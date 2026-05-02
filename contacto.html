@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contáctanos en Lyon Bakery Cali – WhatsApp, redes sociales y formulario de contacto. Pedidos, cotizaciones y asesorías.">
+  <title>Contacto - Lyon Bakery Cali</title>
+  <meta property="og:title" content="Contacto – Lyon Bakery Cali">
+  <meta property="og:description" content="Escríbenos para pedidos, cotizaciones y asesorías. Respondemos a la brevedad.">
+  <meta property="og:image" content="assets/images/inicio.webp">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  </head>
+  
+  <style>
+    /* Mensaje de éxito/error del formulario */
+    .form-mensaje {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+    }
+    .form-mensaje.exito {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      color: #166534;
+    }
+    .form-mensaje.error {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+    }
+    .form-mensaje.visible { display: block; }
+
+    /* Botón con estado de carga */
+    .btn-enviar {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-enviar .enviar-spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    .btn-enviar.enviando .enviar-spinner { display: block; }
+    .btn-enviar.enviando { opacity: 0.75; pointer-events: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 768px) {
+      .logo { width: 65px !important; height: 65px !important; }
+    }
+  </style>
+<body>
+
+  <header class="header">
+    <a href="index.html" aria-label="Ir al inicio">
+      <img src="assets/images/logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90" fetchpriority="high">
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navbar" id="navbar" aria-label="Navegacion principal">
+      <a href="index.html">Inicio</a>
+      <a href="sobre-mi.html">Sobre mi</a>
+      <a href="servicios.html">Nuestros servicios</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="contacto.html" class="activo">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="contenido">
+    <h1 class="titulo-principal">Contáctanos</h1>
+    <p style="max-width:560px;margin:0 auto 36px;color:#555;">
+      ¿Tienes alguna pregunta, quieres hacer un pedido o necesitas una cotización? Escríbenos y te respondemos a la brevedad.
+    </p>
+
+    <section class="formulario-contacto" aria-labelledby="form-titulo">
+      <h2 id="form-titulo" style="color:#1a1a1a;font-size:1.2rem;margin-bottom:20px;font-family:'Lato',sans-serif;font-weight:700;">
+        Envíanos un mensaje
+      </h2>
+
+      <form id="form-contacto">
+        <input type="hidden" name="access_key" value="TU_CLAVE_WEB3FORMS_AQUI">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde Lyon Bakery Web">
+        <input type="hidden" name="from_name" value="Lyon Bakery Sitio Web">
+        
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off">
+
+        <label for="nombre">Tu nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: María García" required autocomplete="name">
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tu@correo.com" required autocomplete="email">
+
+        <label for="asunto">Asunto</label>
+        <input type="text" id="asunto" name="asunto" placeholder="¿En qué podemos ayudarte?" required>
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+
+        <button type="submit" class="btn-enviar">
+          <span class="enviar-spinner" aria-hidden="true"></span>
+          <span class="enviar-texto">Enviar mensaje</span>
+        </button>
+
+        <div class="form-mensaje" id="form-mensaje" role="alert" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section class="info-contacto" aria-label="Información de contacto">
+      <p><strong>📞 Teléfono:</strong> 301 238 7327</p>
+      <p><strong>💌 Correo:</strong> mayorackgrupo@gmail.com</p>
+      <p><strong>📍 Ubicación:</strong> Cali, Colombia</p>
+      <p><strong>🕒 Horario:</strong> Lunes a Sábado, 8:00 am – 6:00 pm</p>
+    </section>
+
+    <section class="whatsapp-contacto" aria-label="Contacto por WhatsApp">
+      <a href="https://wa.me/573012387327" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+        <img src="assets/icons/whatsapp.webp" alt="" aria-hidden="true" width="22" height="22">
+        Contactar por WhatsApp
+      </a>
+    </section>
+
+    <section class="redes-contacto" aria-label="Redes sociales">
+      <h3>Síguenos en redes</h3>
+      <div class="icon-links">
+        <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram de Lyon Bakery">
+          <img src="assets/icons/instagram.webp" alt="" aria-hidden="true" width="22" height="22"> Instagram
+        </a>
+        <a href="https://www.tiktok.com/@lyon_bakerycl" target="_blank" rel="noopener" aria-label="TikTok de Lyon Bakery">
+          <img src="assets/icons/tiktok.webp" alt="" aria-hidden="true" width="22" height="22"> TikTok
+        </a>
+        <a href="https://www.youtube.com/@lyonbakery" target="_blank" rel="noopener" aria-label="YouTube de Lyon Bakery">
+          <img src="assets/icons/youtube.webp" alt="" aria-hidden="true" width="22" height="22"> YouTube
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Lyon Bakery</h4>
+        <p>Cocina saludable, consciente y adaptada a tus necesidades. Cali, Colombia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="index.html">Inicio</a>
+        <a href="sobre-mi.html">Sobre mi</a>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="galeria.html">Galeria</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>301 238 7327</p>
+        <p>mayorackgrupo@gmail.com</p>
+        <p>Cali, Colombia</p>
+      </div>
+      <div class="footer-col">
+        <h4>Redes sociales</h4>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="assets/icons/instagram.webp" alt="Instagram"> Instagram
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.tiktok.com/@lyon_bakerycl" target="_blank" rel="noopener" aria-label="TikTok">
+            <img src="assets/icons/tiktok.webp" alt="TikTok"> TikTok
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.youtube.com/@lyonbakery" target="_blank" rel="noopener" aria-label="YouTube">
+            <img src="assets/icons/youtube.webp" alt="YouTube"> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footer-year"></span> Lyon Bakery. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573012387327" class="whatsapp-fijo" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <span class="tooltip">Contactanos por WhatsApp</span>
+    <img src="assets/icons/whatsapp.webp" alt="" aria-hidden="true" width="28" height="28">
+  </a>
+
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Menú hamburguesa
+    var toggle = document.querySelector('.menu-toggle');
+    var navbar = document.getElementById('navbar');
+    toggle.addEventListener('click', function() {
+      var isOpen = navbar.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Formulario — envío con Web3Forms + Rate Limiting anti-DoS
+    var form       = document.getElementById('form-contacto');
+    var btnEnviar  = form.querySelector('.btn-enviar');
+    var mensajeDiv = document.getElementById('form-mensaje');
+
+    // Rate limiting: máximo 2 envíos por sesión, mínimo 30s entre envíos
+    var enviosRealizados  = 0;
+    var MAX_ENVIOS        = 2;
+    var COOLDOWN_MS       = 30000; // 30 segundos entre envíos
+    var ultimoEnvio       = 0;
+
+    // Honeypot de tiempo: detecta bots que rellenan el form en < 3 segundos
+    var tiempoInicioForm  = Date.now();
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // 1. Honeypot de tiempo — bots rellenan formularios en milisegundos
+      var tiempoRelleno = Date.now() - tiempoInicioForm;
+      if (tiempoRelleno < 3000) {
+        // Simula éxito para no revelar la defensa al bot
+        mostrarMensaje('¡Mensaje enviado con éxito! Te responderemos pronto.', 'exito');
+        form.reset();
+        return;
+      }
+
+      // 2. Límite de sesión
+      if (enviosRealizados >= MAX_ENVIOS) {
+        mostrarMensaje('Has alcanzado el límite de mensajes por sesión. Escríbenos directamente por WhatsApp.', 'error');
+        return;
+      }
+
+      // 3. Cooldown entre envíos
+      var ahora = Date.now();
+      var tiempoRestante = Math.ceil((COOLDOWN_MS - (ahora - ultimoEnvio)) / 1000);
+      if (ultimoEnvio > 0 && (ahora - ultimoEnvio) < COOLDOWN_MS) {
+        mostrarMensaje('Por favor espera ' + tiempoRestante + ' segundos antes de enviar otro mensaje.', 'error');
+        return;
+      }
+
+      // Validación visual de campos
+      var campos = form.querySelectorAll('[required]');
+      var valido = true;
+      campos.forEach(function(c) {
+        if (!c.value.trim()) { 
+          c.style.borderColor = '#fca5a5'; 
+          valido = false; 
+        } else { 
+          c.style.borderColor = ''; 
+        }
+      });
+
+      if (!valido) {
+        mostrarMensaje('Por favor completa todos los campos requeridos.', 'error');
+        return;
+      }
+
+      // Estado enviando (UI)
+      btnEnviar.classList.add('enviando');
+      btnEnviar.querySelector('.enviar-texto').textContent = 'Enviando...';
+      mensajeDiv.classList.remove('visible', 'exito', 'error');
+
+      var datos = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: datos
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.success) {
+          enviosRealizados++;
+          ultimoEnvio = Date.now();
+          mostrarMensaje('¡Mensaje enviado con éxito! Te responderemos pronto.', 'exito');
+          form.reset();
+          tiempoInicioForm = Date.now(); // reset timer por si rellena de nuevo
+        } else {
+          mostrarMensaje('Error al enviar. Por favor intenta de nuevo o escríbenos por WhatsApp.', 'error');
+        }
+      })
+      .catch(function() {
+        mostrarMensaje('Error de conexión. Revisa tu internet o escríbenos directamente.', 'error');
+      })
+      .finally(function() {
+        btnEnviar.classList.remove('enviando');
+        btnEnviar.querySelector('.enviar-texto').textContent = 'Enviar mensaje';
+      });
+    });
+
+    function mostrarMensaje(texto, tipo) {
+      mensajeDiv.textContent = texto;
+      mensajeDiv.className = 'form-mensaje ' + tipo + ' visible';
+      // Scroll suave hacia el mensaje para que el usuario lo vea
+      mensajeDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Limpiar alertas al escribir
+    form.querySelectorAll('[required]').forEach(function(c) {
+      c.addEventListener('input', function() { c.style.borderColor = ''; });
+    });
+  </script>
+
+</body>
+</html>

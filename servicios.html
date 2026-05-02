@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Servicios de Lyon Bakery: loncheras saludables, comida para adultos, catering, clases gastronómicas, asesoría y maquila. Cali, Colombia.">
+  <title>Nuestros servicios - Lyon Bakery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="canonical" href="https://tudominio.com/servicios.html">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+</head>
+  
+  <style>
+    /* Offset para compensar el header sticky en desktop */
+    .servicio-section {
+      scroll-margin-top: 160px;
+    }
+    @media (max-width: 768px) {
+      .servicio-section { scroll-margin-top: 100px; }
+    }
+
+    /* ── Botón flotante "Ir a un servicio" ── */
+    .nav-flotante {
+      position: fixed;
+      bottom: 88px;
+      right: 24px;
+      z-index: 998;
+      display: none;
+    }
+    .nav-flotante-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #D4AF37;
+      color: #fff;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 24px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.45);
+      transition: background 0.25s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .nav-flotante-btn:hover { background: #a8891e; transform: translateY(-2px); }
+    .nav-flotante-btn .nav-flotante-icono { font-size: 1rem; }
+    .nav-flotante-menu {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 10px);
+      right: 0;
+      background: #fff;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+      min-width: 240px;
+      overflow: hidden;
+    }
+    .nav-flotante-menu.abierto { display: block; }
+    .nav-flotante-menu a {
+      display: block;
+      padding: 11px 18px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-flotante-menu a:last-child { border-bottom: none; }
+    .nav-flotante-menu a:hover { background: #fffbef; color: #D4AF37; }
+
+    /* Banner aviso anticipación */
+    .aviso-anticipacion {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      max-width: 860px;
+      margin: 0 auto 8px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #fffbef 0%, #fdf6d8 100%);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-left: 4px solid #D4AF37;
+      border-radius: 10px;
+      text-align: left;
+    }
+    .aviso-anticipacion .aviso-icono { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+    .aviso-anticipacion p { margin: 0; font-size: 0.88rem; color: #5a4a10; line-height: 1.55; }
+    .aviso-anticipacion strong { color: #3d3000; font-size: 0.9rem; display: block; margin-bottom: 3px; }
+    .aviso-anticipacion a { color: #D4AF37; font-weight: 700; text-decoration: underline; }
+    .aviso-anticipacion a:hover { color: #a8891e; }
+
+    /* Grid de sección fusionada */
+    .fusion-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .fusion-bloque {
+      background: var(--gray-light, #f8f8f8);
+      border-left: 4px solid #D4AF37;
+      border-radius: 0 12px 12px 0;
+      padding: 22px 22px 22px 20px;
+    }
+    .fusion-bloque ul { padding-left: 18px; margin-top: 10px; }
+    .fusion-bloque ul li { font-size: 0.96rem; color: #555; margin-bottom: 7px; }
+    .fusion-bloque p { font-size: 0.96rem; color: #555; margin-bottom: 0; }
+    .fusion-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: #D4AF37;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 768px) {
+      .fusion-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Etiqueta de disponibilidad */
+    .disponibilidad {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #a8891e;
+      background: rgba(212,175,55,0.12);
+      border: 1px solid rgba(212,175,55,0.35);
+      border-radius: 20px;
+      padding: 2px 9px;
+      margin-left: 6px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    /* Notas y descripciones */
+    .menu-lista .desc {
+      font-size: 0.79rem;
+      color: #888;
+      font-style: italic;
+      display: block;
+      padding: 0 0 6px;
+      border: none;
+      line-height: 1.4;
+    }
+    .menu-card .subtitulo-linea {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #a8891e;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 14px 0 6px;
+      padding-top: 10px;
+      border-top: 1px dashed #e8d89a;
+    }
+    .menu-lista .maridaje {
+      font-size: 0.76rem;
+      color: #aaa;
+      display: block;
+      padding: 0 0 4px;
+      border: none;
+      font-style: italic;
+    }
+
+    /* ═══════════════════════════════════════
+       ACORDEÓN — botón "Ver menú completo"
+       ═══════════════════════════════════════ */
+    .accordion-wrap {
+      max-width: 900px;
+      margin: 20px auto 0;
+    }
+
+    /* Botón disparador */
+    .accordion-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #D4AF37;
+      border: 2px solid #D4AF37;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+    }
+    .accordion-trigger:hover {
+      background: #D4AF37;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.35);
+    }
+    .accordion-trigger.abierto {
+      background: #D4AF37;
+      color: #fff;
+    }
+    .accordion-trigger .acc-icono {
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    .accordion-trigger.abierto .acc-icono {
+      transform: rotate(180deg);
+    }
+
+    /* Contenido desplegable */
+    .accordion-content {
+      display: none;
+      margin-top: 20px;
+      animation: fadeSlide 0.3s ease;
+    }
+    .accordion-content.abierto {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.html" aria-label="Ir al inicio"><img src="assets/images/logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90" fetchpriority="high"></a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navbar" id="navbar" aria-label="Navegacion principal">
+      <a href="index.html">Inicio</a>
+      <a href="sobre-mi.html">Sobre mi</a>
+      <a href="servicios.html" class="activo">Nuestros servicios</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="contenido">
+    <h1 class="titulo-principal">Nuestros servicios</h1>
+    <p style="max-width:680px;margin:0 auto 24px;color:#555;">Soluciones alimentarias saludables para familias, empresas y emprendedores. Todo elaborado con ingredientes naturales, sin conservantes ni colorantes.</p>
+
+    <!-- Menu rapido de navegacion -->
+    <div class="dropdown" role="navigation" aria-label="Ir a seccion">
+      <button class="dropdown-button" aria-haspopup="true" aria-expanded="false">Ir a un servicio ▾</button>
+      <div class="dropdown-content" role="menu">
+        <a href="#loncheras" role="menuitem">Loncheras Saludables para Niños</a>
+        <a href="#adultos" role="menuitem">Lonchera Consciente — Adultos</a>
+        <a href="#pan-artesanal" role="menuitem">Línea Dorada — Pan Artesanal</a>
+        <a href="#vinagretas" role="menuitem">Lyon Roots — Vinagretas Artesanales</a>
+        <a href="#navidad" role="menuitem">Menú Navideño 2025 &#127876;</a>
+        <a href="#cursos" role="menuitem">Clases y Cursos Gastronomicos</a>
+        <a href="#catering" role="menuitem">Catering Saludable y Montajes</a>
+        <a href="#especializada" role="menuitem">Alimentacion Especializada y Asesoría</a>
+        <a href="#maquila" role="menuitem">Maquila para Restaurantes</a>
+      </div>
+    </div>
+
+    <!-- =============================================
+         LONCHERAS SALUDABLES PARA NIÑOS
+         ============================================= -->
+    <section class="servicio-section" id="loncheras">
+      <div class="titulo-con-icono">
+        <img src="assets/icons/logo-kids.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
+        <h2>Loncheras Saludables para Niños</h2>
+      </div>
+      <p>Alimentacion segura, divertida y nutritiva para los mas pequeños.</p>
+      <ul>
+        <li>Elaboradas con ingredientes 100% naturales</li>
+        <li>Sin conservantes ni colorantes artificiales</li>
+        <li>Ultracongeladas y empacadas al vacio</li>
+        <li>Opciones balanceadas y variadas</li>
+        <li>Ideal para colegios, jardines y familias</li>
+      </ul>
+
+      <div class="accordion-wrap">
+        <button class="accordion-trigger" data-target="acc-loncheras" aria-expanded="false">
+          <span class="acc-icono">&#9660;</span> Ver menú completo
+        </button>
+
+        <div class="accordion-content" id="acc-loncheras">
+          <h2 class="titulo-seccion" style="margin-bottom:16px;">Menú Niños</h2>
+          <p style="max-width:860px;margin:0 auto 24px;color:#555;text-align:left;">
+            Nuestros productos son 100% artesanales, libres de quimicos, colorantes y saborizantes artificiales.
+            Diseñados para congelarse, faciles de almacenar y calentar en freidora de aire, sarten o baño Maria.
+            <span style="white-space:nowrap;font-weight:700;">@lyon_bakery_cl · 301 238 7327</span>
+          </p>
+
+          <div class="menu-grid">
+
+            <article class="menu-card">
+              <h3>Proteínas</h3>
+              <ul class="menu-lista">
+                <li><span>Nuggets de Pollo (20 und / 490 gr)</span><span class="precio">$35.000</span></li>
+                <li><span>Pollo Desmechado (450 gr)</span><span class="precio">$22.000</span></li>
+                <li><span>Carne Desmechada (200 gr)</span><span class="precio">$18.000</span></li>
+                <li><span>Carne Molida Guisada (250 gr)</span><span class="precio">$17.000</span></li>
+                <li><span>Pollo para Hamburguesas (4 und)</span><span class="precio">$25.000</span></li>
+                <li><span>Carne para Hamburguesas (4 und)</span><span class="precio">$28.000</span></li>
+                <li><span>Chicken Finger (240 gr)</span><span class="precio">$25.000</span></li>
+                <li><span>Salchicha de Pollo con Verdura (4 und)</span><span class="precio">$12.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Preparaciones</h3>
+              <ul class="menu-lista">
+                <li><span>Albondigas (12 und / 390 gr)</span><span class="precio">$22.000</span></li>
+                <li><span>Frijoles Refritos (458 gr)</span><span class="precio">$10.500</span></li>
+                <li><span>Envuelto de Choclo Relleno de Queso (x2)</span><span class="precio">$16.000</span></li>
+                <li><span>Lasaña de Pollo con Bechamel (2 und)</span><span class="precio">$20.000</span></li>
+                <li><span>Lasaña de Carne con Salsa Americana (2 und)</span><span class="precio">$22.000</span></li>
+                <li><span>Pasta de Pollo para Sándwich</span><span class="precio">$17.000</span></li>
+                <li><span>Pasta Artesanal Tradicional (500 gr)</span><span class="precio">$12.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Salsas</h3>
+              <ul class="menu-lista">
+                <li><span>Salsa Bechamel (200 ml)</span><span class="precio">$14.000</span></li>
+                <li><span>Salsa Napolitana (200 ml)</span><span class="precio">$15.000</span></li>
+                <li><span>Crema de Zapallo (350 ml)</span><span class="precio">$17.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Pizzas (3 und)</h3>
+              <ul class="menu-lista">
+                <li><span>Pizza de Pepperoni</span><span class="precio">$24.000</span></li>
+                <li><span>Pizza Jamón y Queso</span><span class="precio">$22.000</span></li>
+                <li><span>Pizza Hawaiana</span><span class="precio">$23.000</span></li>
+                <li><span>Pizza Pollo con Champiñones</span><span class="precio">$24.000</span></li>
+                <li><span>Pizza 3 Quesos</span><span class="precio">$21.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Panes y acompañamientos</h3>
+              <ul class="menu-lista">
+                <li><span>Pandebono Kids (15 und)</span><span class="precio">$17.000</span></li>
+                <li><span>Mini Arepa de Choclo (8 und)</span><span class="precio">$14.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Pasteles</h3>
+              <ul class="menu-lista">
+                <li><span>Pasteles Pollo / Hawaiano / Pepperoni (4 und)</span><span class="precio">$14.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Waffles</h3>
+              <ul class="menu-lista">
+                <li><span>Waffle de Sal con Verduras (6 und)</span><span class="precio">$18.000</span></li>
+                <li><span>Waffle Bono con Bocadillo (6 und)</span><span class="precio">$16.000</span></li>
+                <li><span>Waffle Maduro Relleno de Queso (4 und)</span><span class="precio">$18.000</span></li>
+                <li><span>Waffle Choclo Relleno de Queso (6 und)</span><span class="precio">$16.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Pancakes</h3>
+              <ul class="menu-lista">
+                <li><span>Pancakes de Vainilla (10 und)</span><span class="precio">$17.000</span></li>
+                <li><span>Pancakes de Remolacha (20 und)</span><span class="precio">$22.000</span></li>
+                <li><span>Pancakes de Espinaca (20 und)</span><span class="precio">$22.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Postres</h3>
+              <ul class="menu-lista">
+                <li><span>Chocoramos (6 und)</span><span class="precio">$15.000</span></li>
+                <li><span>Arroz con Leche (230 gr)</span><span class="precio">$8.000</span></li>
+                <li><span>Cupcake de Zanahoria o Mandarina (6 und)</span><span class="precio">$13.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Galletas y dulces</h3>
+              <ul class="menu-lista">
+                <li><span>Galleta de Naranja (8 und)</span><span class="precio">$15.000</span></li>
+                <li><span>Galleta de Avena (8 und)</span><span class="precio">$12.000</span></li>
+                <li><span>Galleta de Almendras (6 und)</span><span class="precio">$15.000</span></li>
+                <li><span>Pan de Coco (8 und)</span><span class="precio">$16.000</span></li>
+              </ul>
+            </article>
+
+          </div>
+
+          <div style="margin-top:36px;text-align:center;">
+            <p style="margin-bottom:12px;color:#555;">¿Prefieres tenerlo a mano? Descarga el menú completo en PDF.</p>
+            <a class="btn-descarga" href="assets/docs/Menu_Loncheras Kids.pdf" download="Menu_Loncheras Kids.pdf" aria-label="Descargar Menú Loncheras Kids en PDF">
+              &#11015; Descargar menú PDF
+            </a>
+          </div>
+        </div><!-- /accordion-content -->
+      </div><!-- /accordion-wrap -->
+    </section>
+
+    <!-- =============================================
+         LONCHERA CONSCIENTE — ADULTOS
+         ============================================= -->
+    <section class="servicio-section" id="adultos">
+      <div class="titulo-con-icono">
+        <img src="assets/icons/menu_adultos.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
+        <h2>Lonchera Consciente — Adultos</h2>
+      </div>
+      <p>Platos listos para disfrutar sin culpa. 100% artesanal, sin químicos, colorantes ni saborizantes artificiales. Diseñados para congelar y fáciles de calentar.</p>
+
+      <div class="accordion-wrap">
+        <button class="accordion-trigger" data-target="acc-adultos" aria-expanded="false">
+          <span class="acc-icono">&#9660;</span> Ver menú completo
+        </button>
+
+        <div class="accordion-content" id="acc-adultos">
+          <h2 class="titulo-seccion" style="margin-bottom:16px;">Menú Adultos</h2>
+
+          <div class="menu-grid">
+
+            <article class="menu-card">
+              <h3>Proteínas</h3>
+              <ul class="menu-lista">
+                <li><span>Pollo Desmechado (450 gr)</span><span class="precio">$25.000</span></li>
+                <li><span>Pechuga de Pollo Ahumada (150 gr)</span><span class="precio">$20.000</span></li>
+                <li><span>Churrasco de Pollo (200 gr)</span><span class="precio">$23.000</span></li>
+                <li><span>Jamón de Pavo Ahumado (150 gr)</span><span class="precio">$18.000</span></li>
+                <li><span>Carne Desmechada (200 gr)</span><span class="precio">$21.000</span></li>
+                <li><span>Torta de Pollo para Hamburguesa (4 und)</span><span class="precio">$28.000</span></li>
+                <li><span>Carne para Hamburguesa (4 und)</span><span class="precio">$32.000</span></li>
+                <li><span>Costilla al Barril</span><span class="precio">$22.000</span></li>
+                <li><span>Panceta al Barril</span><span class="precio">$25.000</span></li>
+                <li><span>Punta de Cerdo al Barril</span><span class="precio">$28.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Preparaciones</h3>
+              <ul class="menu-lista">
+                <li><span>Albóndigas (12 und / 390 gr)</span><span class="precio">$25.000</span></li>
+                <li><span>Lasaña Vegetariana (x2 und)</span><span class="precio">$45.000</span></li>
+                <li><span>Lasaña de Pollo con Bechamel (2 und)</span><span class="precio">$42.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Salsas</h3>
+              <ul class="menu-lista">
+                <li><span>Salsa Napolitana (200 ml)</span><span class="precio">$15.000</span></li>
+                <li><span>Salsa Bechamel (200 ml)</span><span class="precio">$15.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Panes y acompañamientos</h3>
+              <ul class="menu-lista">
+                <li><span>Arepa de Yuca Aliñada con Mix de Quesos (4 und)</span><span class="precio">$16.000</span></li>
+                <li><span>Envueltos Rellenos de Queso (x2)</span><span class="precio">$16.000</span></li>
+                <li><span>Crutones de Masa Madre</span><span class="precio">$15.000</span></li>
+                <li><span>Grisinis de Almendra</span><span class="precio">$17.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Conservas en aceite de oliva</h3>
+              <ul class="menu-lista">
+                <li><span>Pimentón Asado en Aceite de Oliva (120 gr)</span><span class="precio">$15.000</span></li>
+                <li><span>Tomate Asado en Aceite de Oliva (120 gr)</span><span class="precio">$15.000</span></li>
+                <li><span>Aceitunas a las Finas Hierbas (170 gr)</span><span class="precio">$20.000</span></li>
+                <li><span>Queso Marinado en Aceite de Oliva (200 gr)</span><span class="precio">$20.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Especiales saludables</h3>
+              <ul class="menu-lista">
+                <li><span>Guacamole Keto (200 gr)</span><span class="precio">$25.000</span></li>
+                <li><span>Kéfir (1 litro)</span><span class="precio">$30.000</span></li>
+                <li><span>Tortillas de Avena</span><span class="precio">$17.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Snacks y dulces</h3>
+              <ul class="menu-lista">
+                <li><span>Galleta de Avena (x6)</span><span class="precio">$17.000</span></li>
+                <li><span>Torta de Café con Harina y Queso de Almendras (porción)</span><span class="precio">$15.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Sopas y caldos</h3>
+              <ul class="menu-lista">
+                <li><span>Sopa de Mariscos</span><span class="precio">$40.000</span></li>
+                <li><span>Sopa Levantamuertos</span><span class="precio">$20.000</span></li>
+                <li><span>Caldo de Pollo</span><span class="precio">$15.000</span></li>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Bienestar</h3>
+              <ul class="menu-lista">
+                <li><span>Shots de Colágeno con Cúrcuma</span><span class="precio">$25.000</span></li>
+              </ul>
+            </article>
+
+          </div>
+
+          <div style="margin-top:36px;text-align:center;">
+            <p style="margin-bottom:12px;color:#555;">¿Prefieres tenerlo a mano? Descarga el menú completo en PDF.</p>
+            <a class="btn-descarga" href="assets/docs/Menu_Adultos.pdf" download="Menu_Adultos.pdf" aria-label="Descargar Menú Adultos en PDF">
+              &#11015; Descargar menú PDF
+            </a>
+          </div>
+        </div><!-- /accordion-content -->
+      </div><!-- /accordion-wrap -->
+    </section>
+
+    <!-- =============================================
+         LÍNEA DORADA — PAN ARTESANAL
+         ============================================= -->
+    <section class="servicio-section" id="pan-artesanal">
+      <div class="titulo-con-icono">
+        <img src="assets/icons/icono_linea_dorada.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
+        <h2>Línea Dorada — Pan Artesanal</h2>
+      </div>
+      <p>Panes elaborados artesanalmente con ingredientes premium y masa madre de 11 años. Disponibles los lunes, jueves y sábados desde las 2 p.m.</p>
+      <ul>
+        <li>Pedidos con mínimo <strong>24 horas de anticipación</strong></li>
+        <li>Masa madre <em>Saandra</em> de 11 años de fermentación natural</li>
+        <li>Sin conservantes, sin aditivos artificiales</li>
+      </ul>
+
+      <div class="accordion-wrap">
+        <button class="accordion-trigger" data-target="acc-pan" aria-expanded="false">
+          <span class="acc-icono">&#9660;</span> Ver menú completo
+        </button>
+
+        <div class="accordion-content" id="acc-pan">
+          <h2 class="titulo-seccion" style="margin-bottom:8px;">Menú Pan Artesanal</h2>
+          <p style="max-width:860px;margin:0 auto 24px;color:#555;text-align:left;">
+            Disponible: <strong>Lunes, Jueves y Sábado</strong> · Desde las 2:00 p.m. · Pedidos con 24 h de anticipación.
+          </p>
+
+          <div class="menu-grid">
+
+            <article class="menu-card">
+              <h3>Línea Tradicional</h3>
+              <ul class="menu-lista">
+                <li>
+                  <span>Brioche Imperial de Mantequilla Dorada <span class="disponibilidad">Lunes</span></span>
+                  <span class="precio">$15.000</span>
+                </li>
+                <span class="desc">Suave, ligero y esponjoso con mantequilla premium. Ideal para tostadas francesas.</span>
+                <li>
+                  <span>Nocciolato Artesanal <span class="disponibilidad">Lunes</span></span>
+                  <span class="precio">$18.000</span>
+                </li>
+                <span class="desc">Pan tierno con corazón cremoso de avellanas.</span>
+                <li>
+                  <span>Caleño Ancestral <span class="disponibilidad">Jueves</span></span>
+                  <span class="precio">$18.000</span>
+                </li>
+                <span class="desc">Relleno de queso mozzarella y bocadillo en masa suave.</span>
+                <li>
+                  <span>Pan Aliñado Relleno <span class="disponibilidad">Sábado</span></span>
+                  <span class="precio">$15.000</span>
+                </li>
+                <span class="desc">Aromático, especiado y con queso mozzarella fundido.</span>
+                <li>
+                  <span>Pan de la Nonna <span class="disponibilidad">Sábado</span></span>
+                  <span class="precio">$18.000</span>
+                </li>
+                <span class="desc">Clásico hogareño con cubierta de mozzarella gratinada.</span>
+                <li>
+                  <span>Pan Campestre Jamón y Queso Mozzarella <span class="disponibilidad">Sábado</span></span>
+                  <span class="precio">$18.000</span>
+                </li>
+                <span class="desc">Relleno generoso de jamón artesanal y mozzarella.</span>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Masa Madre Saandra · Lunes y Jueves</h3>
+              <ul class="menu-lista">
+                <li>
+                  <span>Multisemillas de Corteza Viva y Queso <span class="disponibilidad">Lunes</span></span>
+                  <span class="precio">$23.000</span>
+                </li>
+                <span class="desc">Masa madre de 11 años con semillas tostadas. Nutritivo y lleno de carácter.</span>
+                <li>
+                  <span>Mediterráneo Rústico <span class="disponibilidad">Jueves</span></span>
+                  <span class="precio">$23.000</span>
+                </li>
+                <span class="desc">Aceitunas y nueces negras con 24 h de fermentación natural.</span>
+                <li>
+                  <span>Bosque Antiguo <span class="disponibilidad">Jueves</span></span>
+                  <span class="precio">$22.000</span>
+                </li>
+                <span class="desc">Arándanos y nueces en masa madre equilibrada y ligeramente dulce.</span>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Masa Madre Saandra · Sábado</h3>
+              <ul class="menu-lista">
+                <li><span>Tradicional de Reserva</span><span class="precio">$20.000</span></li>
+                <span class="desc">Corteza crujiente y miga alveolada. Masa madre de 11 años.</span>
+                <li><span>Nube Dorada de Chocolate</span><span class="precio">$18.000</span></li>
+                <span class="desc">Esponjosidad de brioche con borojó y chontaduro. Natural y energético.</span>
+                <li><span>Almendra, Cocoa y Chocolate</span><span class="precio">$25.000</span></li>
+                <li><span>Almendra, Aceituna Verde y Queso</span><span class="precio">$25.000</span></li>
+                <li><span>Nuez y Aceituna Morada</span><span class="precio">$23.000</span></li>
+                <li><span>Almendra, Chontaduro y Miel</span><span class="precio">$25.000</span></li>
+                <li><span>Almendra, Pesto, Queso y Tomate</span><span class="precio">$25.000</span></li>
+                <li><span>Nuez y Breva Envinada</span><span class="precio">$23.000</span></li>
+                <li><span>Clásico con Quesos</span><span class="precio">$25.000</span></li>
+                <li><span>Cúrcuma, Tocineta y Almendra</span><span class="precio">$25.000</span></li>
+                <li><span>Borojó, Chontaduro y Almendra</span><span class="precio">$25.000</span></li>
+                <li><span>Tocineta, Quesos y Nuez</span><span class="precio">$25.000</span></li>
+              </ul>
+            </article>
+
+          </div>
+
+          <div style="margin-top:36px;text-align:center;">
+            <p style="margin-bottom:12px;color:#555;">¿Prefieres tenerlo a mano? Descarga el menú completo en PDF.</p>
+            <a class="btn-descarga" href="assets/docs/Menu_Linea dorada.pdf" download="Menu_Linea dorada.pdf" aria-label="Descargar Menú Línea Dorada en PDF">
+              &#11015; Descargar menú PDF
+            </a>
+          </div>
+        </div><!-- /accordion-content -->
+      </div><!-- /accordion-wrap -->
+    </section>
+
+    <!-- =============================================
+         LYON ROOTS — VINAGRETAS ARTESANALES
+         ============================================= -->
+    <section class="servicio-section" id="vinagretas">
+      <div class="titulo-con-icono">
+        <img src="assets/icons/icono_roots.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
+        <h2>Lyon Roots — Vinagretas Artesanales</h2>
+      </div>
+      <p>Elaboradas con ingredientes frescos, sin conservantes ni artificiales. Para ensaladas, proteínas, panes y preparaciones frías y calientes.</p>
+
+      <div class="accordion-wrap">
+        <button class="accordion-trigger" data-target="acc-vinagretas" aria-expanded="false">
+          <span class="acc-icono">&#9660;</span> Ver menú completo
+        </button>
+
+        <div class="accordion-content" id="acc-vinagretas">
+          <h2 class="titulo-seccion" style="margin-bottom:16px;">Menú Vinagretas</h2>
+
+          <div class="menu-grid">
+
+            <article class="menu-card">
+              <h3>Clásicas y Contemporáneas</h3>
+              <ul class="menu-lista">
+                <li><span>Pebre Fresco</span></li>
+                <span class="desc">Tomate, cebolla, cilantro y limón. Vibrante y herbal.</span>
+                <span class="maridaje">Maridaje: carnes a la parrilla, empanadas, ensaladas rústicas, panes artesanales.</span>
+
+                <li><span>Vinagreta de Pimentón Asado</span></li>
+                <span class="desc">Pimentón asado a la llama. Dulce, ahumada y aterciopelada.</span>
+                <span class="maridaje">Maridaje: ensaladas templadas, pastas frías, burratas, sándwiches gourmet.</span>
+
+                <li><span>Vinagreta Balsámica Clásica</span></li>
+                <span class="desc">Elegante y equilibrada. Balsámico con aceite y hierbas.</span>
+                <span class="maridaje">Maridaje: ensaladas mediterráneas, carpaccios, verduras grilladas.</span>
+
+                <li><span>Chimichurri Argentino</span></li>
+                <span class="desc">Perejil, ajo, orégano y vinagre. Herbal, picante y apasionado.</span>
+                <span class="maridaje">Maridaje: carnes a la parrilla, choripanes, papas asadas.</span>
+
+                <li><span>Vinagreta de Pesto</span></li>
+                <span class="desc">Albahaca, ajo, frutos secos y aceite. Verde, fresca y aromática.</span>
+                <span class="maridaje">Maridaje: ensaladas con pasta, sándwiches artesanales, pescados blancos.</span>
+
+                <li><span>Antipasto de Tomate Asado</span></li>
+                <span class="desc">Tomates lentamente asados en aceite de oliva. Profundo y caramelizado.</span>
+                <span class="maridaje">Maridaje: pan de masa madre, focaccia, burrata fresca.</span>
+
+                <li><span>Dip de Carne Ahumada</span></li>
+                <span class="desc">Crema untuosa con carne ahumada. Sabor intenso y equilibrado.</span>
+                <span class="maridaje">Maridaje: pan artesanal, tostadas, galletas saladas.</span>
+
+                <li><span>Aderezo de Finas Hierbas</span></li>
+                <span class="desc">Mezcla fresca de hierbas seleccionadas. Suave y aromático.</span>
+                <span class="maridaje">Maridaje: ensaladas frescas, vegetales asados, pollo a la plancha.</span>
+              </ul>
+            </article>
+
+            <article class="menu-card">
+              <h3>Edición Navideña</h3>
+              <ul class="menu-lista">
+                <li><span>Vinagreta de Lulo y Panela</span></li>
+                <span class="desc">Dulce, ácida y profundamente caleña. Inspirada en el Pacífico y la panela ancestral.</span>
+                <span class="maridaje">Maridaje: ensaladas con frutas, pollo frío, cerdo ahumado, quesos blancos.</span>
+
+                <li><span>Vinagreta de Piña Asada con Jengibre</span></li>
+                <span class="desc">Piña caramelizada con toque picante de jengibre. Ahumada y navideña.</span>
+                <span class="maridaje">Maridaje: cerdo horneado, lomo navideño, jamón glaseado, patacones.</span>
+
+                <li><span>Vinagreta de Ají Dulce Caleño Navideño</span></li>
+                <span class="desc">Ají dulce con fragancia cálida y limón mandarina. Aromática y tradicional.</span>
+                <span class="maridaje">Maridaje: ensaladas verdes, carnes navideñas, pandebonos rellenos.</span>
+              </ul>
+            </article>
+
+          </div>
+
+          <div style="margin-top:36px;text-align:center;">
+            <p style="margin-bottom:12px;color:#555;">¿Prefieres tenerlo a mano? Descarga el menú completo en PDF.</p>
+            <a class="btn-descarga" href="assets/docs/Menu_Vinagretas.pdf" download="Menu_Vinagretas.pdf" aria-label="Descargar Menú Vinagretas en PDF">
+              &#11015; Descargar menú PDF
+            </a>
+          </div>
+        </div><!-- /accordion-content -->
+      </div><!-- /accordion-wrap -->
+    </section>
+
+    <!-- =============================================
+         MENÚ NAVIDEÑO
+         ============================================= -->
+    <section class="servicio-section" id="navidad">
+      <div class="titulo-con-icono">
+        <img src="assets/icons/icono_navideño.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
+        <h2>Menú Navideño 2025</h2>
+      </div>
+      <p>Una experiencia gastronómica única para estas fiestas. Elaborada con mucho amor, presentada en elegantes empaques para facilitar su calentamiento y conservación.</p>
+
+      <div class="accordion-wrap">
+        <button class="accordion-trigger" data-target="acc-navidad" aria-expanded="false">
+          <span class="acc-icono">&#9660;</span> Ver menú completo
+        </button>
+
+        <div class="accordion-content" id="acc-navidad">
+          <h2 class="titulo-seccion" style="margin-bottom:16px;">Menú Navidad 2025</h2>
+
+          <div class="menu-grid">
+
+            <!-- Entradas y Aperitivos -->
+            <article class="menu-card">
+              <h3>Entradas y Aperitivos</h3>
+              <ul class="menu-lista">
+                <li>
+                  <span>Ponqué de Pollo Gourmet</span>
+                </li>
+                <span class="desc">Esponjoso ponqué salado con finas lascas de pollo sazonado, cubierto con crema de queso.</span>
+                <li>
+                  <span>Árbol Lyon</span>
+                </li>
+                <span class="desc">Exquisito brioche artesanal relleno de carne sazonada y sellado con mantequilla.</span>
+                <li>
+                  <span>Árbol Navideño de Galletas</span>
+                </li>
+                <span class="desc">Elegante estructura festiva elaborada con galletas de mantequilla.</span>
+                <li>
+                  <span>Árbol de Quesos con Pesto, Tomates y Grisinis</span>
+                </li>
+                <span class="desc">Selección de quesos curados y cremosos con pesto fresco, tomates confitados y grisinis.</span>
+              </ul>
+            </article>
+
+            <!-- Ensaladas -->
+            <article class="menu-card">
+              <h3>Ensaladas Frescas y de Temporada</h3>
+              <ul class="menu-lista">
+                <li>
+                  <span>Ensalada Fría al Aguardiente</span>
+                </li>
+                <span class="desc">Combinación aromática y refrescante con notas sutiles de aguardiente que elevan su carácter festivo.</span>
+                <li>
+                  <span>Ensalada Caleña</span>
+                </li>
+                <span class="desc">Interpretación gourmet de un clásico vallecaucano, vibrante en color y sabor, con ingredientes locales de calidad superior.</span>
+                <li>
+                  <span>Ensalada Majana</span>
+                </li>
+                <span class="desc">Hojas frescas, nueces pecanas caramelizadas, queso especiado y duraznos jugosos.</span>
+              </ul>
+            </article>
+
+            <!-- Platos Fuertes -->
+            <article class="menu-card">
+              <h3>Platos Fuertes — Tradición y Alta Cocina</h3>
+              <ul class="menu-lista">
+                <li>
+                  <span>Costillas de la Casa</span>
+                </li>
+                <span class="desc">Receta legendaria de cuatro generaciones. Costillas cocinadas lentamente con glaseado profundo en sabor.</span>
+                <li>
+                  <span>Pernil de Cerdo Tradicional</span>
+                </li>
+                <span class="desc">Corte jugoso y aromático, marinado con especias y horneado hasta lograr una textura tierna.</span>
+                <li>
+                  <span>Lomo de Cerdo Relleno con Chorizo Mexicano</span>
+                </li>
+                <span class="desc">Lomo premium relleno con chorizo mexicano especiado, creando un contraste audaz entre suavidad y picante.</span>
+                <li>
+                  <span>Corona de Carne con Maduro y Baileys</span>
+                </li>
+                <span class="desc">Majestuosa corona de carne rellena de puré de maduro, finalizada con reducción aterciopelada de Baileys y queso doble crema.</span>
+                <li>
+                  <span>Wellington Clásico</span>
+                </li>
+                <span class="desc">Tierna pieza de res envuelta en hojaldre dorado, rellena con duxelles de champiñones. Un ícono de la alta cocina.</span>
+                <li>
+                  <span>Pollo Relleno con Almendras y Manzana</span>
+                </li>
+                <span class="desc">Pollo dorado al horno con relleno de carne, almendras tostadas y manzana caramelizada.</span>
+              </ul>
+            </article>
+
+            <!-- Acompañamientos -->
+            <article class="menu-card">
+              <h3>Acompañamientos Selectos</h3>
+              <ul class="menu-lista">
+                <li>
+                  <span>Arroz Verde Clásico</span>
+                </li>
+                <span class="desc">Aromático, herbáceo y perfecto para resaltar los sabores principales.</span>
+                <li>
+                  <span>Puré de Tres Quesos</span>
+                </li>
+                <span class="desc">Cremosa combinación de quesos seleccionados, textura sedosa y sabor profundo.</span>
+                <li>
+                  <span>Arroz Árabe con Pasas y Nueces</span>
+                </li>
+                <span class="desc">Mezcla equilibrada de dulzor y crocancia, con pasas hidratadas y nueces tostadas.</span>
+              </ul>
+            </article>
+
+            <!-- Postres -->
+            <article class="menu-card">
+              <h3>Postres de Temporada</h3>
+              <ul class="menu-lista">
+                <li>
+                  <span>Ponqué Negro Tradicional</span>
+                </li>
+                <span class="desc">Receta clásica navideña con frutos secos macerados y especias cálidas.</span>
+                <li>
+                  <span>Torta de Arroz con Leche y Caramelo</span>
+                </li>
+                <span class="desc">Cremosa torta de arroz con leche sobre base crocante de galleta, con toque de caramelo.</span>
+                <li>
+                  <span>Trío Navideño: Buñuelos, Natilla y Arroz con Leche</span>
+                </li>
+                <span class="desc">Los imprescindibles de la temporada, elaborados con técnicas tradicionales y un toque gourmet.</span>
+                <li>
+                  <span>Mousse Lotus y Chocolate</span>
+                </li>
+                <span class="desc">Irresistible combinación de mousse cremosa con notas de Lotus y chocolate.</span>
+              </ul>
+            </article>
+
+          </div>
+        </div><!-- /accordion-content -->
+      </div><!-- /accordion-wrap -->
+    </section>
+
+    <!-- =============================================
+         CURSOS
+         ============================================= -->
+    <section class="servicio-section" id="cursos">
+      <h2>Clases y Cursos Gastronomicos</h2>
+      <p>Formacion practica y personalizada, donde y como la necesites.</p>
+      <ul>
+        <li>Modalidad presencial y virtual</li>
+        <li>Cobertura en toda Colombia y el mundo</li>
+        <li>Clases individuales o grupales</li>
+        <li>Tematicas: cocina saludable, funcional, batch cooking y mas</li>
+        <li>Cursos para personas con restricciones alimenticias</li>
+      </ul>
+    </section>
+
+    <!-- CATERING -->
+    <section class="servicio-section" id="catering">
+      <h2>Catering Saludable y Montajes</h2>
+      <p>Alimentacion consciente para tus eventos.</p>
+      <ul>
+        <li>Menus diseñados segun el perfil del evento</li>
+        <li>Opciones vegetarianas, veganas y saludables</li>
+        <li>Montajes profesionales y creativos</li>
+        <li>Eventos corporativos, wellness y celebraciones privadas</li>
+      </ul>
+    </section>
+
+    <!-- ESPECIALIZADA Y ASESORÍA (sección fusionada) -->
+    <section class="servicio-section" id="especializada">
+      <h2>Alimentación Especializada y Asesoría gastronómica</h2>
+      <p>Soluciones integrales que van desde la preparación personalizada de alimentos hasta el acompañamiento profesional de tu negocio gastronómico.</p>
+
+      <div class="fusion-grid">
+        <div class="fusion-bloque">
+          <h3 class="fusion-titulo">Alimentación Especializada</h3>
+          <ul>
+            <li>Dietas personalizadas bajo asesoria medica o nutricional</li>
+            <li>Menus para intolerancias (lacteos, gluten, etc.)</li>
+            <li>Preparaciones para enfermedades cronicas</li>
+            <li>Seguridad alimentaria garantizada</li>
+          </ul>
+        </div>
+        <div class="fusion-bloque">
+          <h3 class="fusion-titulo">Asesoría Gastronómica y Administrativa</h3>
+          <p>Impulsamos el desarrollo integral de tu restaurante, desde la cocina hasta la gestion del negocio.</p>
+          <ul>
+            <li><strong>Asesoria administrativa:</strong> estructura operativa, manejo de inventarios, costos y proveedores, control de mermas, acompanamiento en apertura de nuevos negocios.</li>
+            <li><strong>Diseño y mejora de recetas y menus:</strong> recetas estandarizadas, rentables y saludables, costeo y fichas tecnicas.</li>
+            <li><strong>Marketing gastronomico y estrategia digital:</strong> propuesta de valor, redes sociales, campanas y fotografia gastronomica.</li>
+            <li><strong>Visitas y diagnostico personalizado:</strong> diagnostico en sitio, informe de mejoras con plan de accion detallado.</li>
+            <li><strong>Capacitacion de personal:</strong> talleres de cocina saludable, atencion al cliente y buenas practicas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero-cta mt-32" style="justify-content:flex-start;">
+        <a href="contacto.html" class="btn-white">Solicitar asesoría</a>
+      </div>
+    </section>
+
+    <!-- MAQUILA -->
+    <section class="servicio-section" id="maquila">
+      <h2>Maquila para Restaurantes y Cafeterias</h2>
+      <p>Produccion en gran escala con la calidad y el sabor de Lyon Bakery.</p>
+      <ul>
+        <li><strong>Produccion personalizada:</strong> trabajamos con tus recetas o las creamos desde cero, ajustamos porciones y gramajes.</li>
+        <li><strong>Preparaciones saludables:</strong> sin conservantes, sin colorantes. Opciones veganas, sin gluten, bajas en sodio.</li>
+        <li><strong>Procesos certificados:</strong> ultracongelacion, trazabilidad y estandarizacion.</li>
+        <li><strong>Logistica y entrega:</strong> produccion bajo pedido, empaque y rotulado listo para comercializar.</li>
+      </ul>
+      <div class="hero-cta mt-32" style="justify-content:flex-start;">
+        <a href="contacto.html" class="btn-white">Solicitar cotizacion</a>
+      </div>
+    </section>
+
+    <!-- POR QUE ELEGIRNOS -->
+    <section class="servicio-section" id="porque-elegir" style="border-bottom:none;">
+      <h2>Por que elegir Lyon Bakery?</h2>
+      <div class="cards-grid" style="margin-top:16px;">
+        <div class="card"><h3>Productos naturales</h3><p>Sin aditivos, sin conservantes, sin colorantes artificiales.</p></div>
+        <div class="card"><h3>Atencion personalizada</h3><p>Adaptamos cada solucion a tus necesidades especificas.</p></div>
+        <div class="card"><h3>Salud y medio ambiente</h3><p>Compromiso real con el bienestar y la sostenibilidad.</p></div>
+        <div class="card"><h3>Cobertura nacional</h3><p>Servicio flexible presencial y virtual en toda Colombia.</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Lyon Bakery</h4>
+        <p>Cocina saludable, consciente y adaptada a tus necesidades. Cali, Colombia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegacion</h4>
+        <a href="index.html">Inicio</a>
+        <a href="sobre-mi.html">Sobre mi</a>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="galeria.html">Galeria</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>301 238 7327</p>
+        <p>mayorackgrupo&#64;gmail.com</p>
+        <p>Cali, Colombia</p>
+      </div>
+      <div class="footer-col">
+        <h4>Redes sociales</h4>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram">
+            <img loading="lazy" src="assets/icons/instagram.webp" alt="Instagram"> Instagram
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.tiktok.com/@lyon_bakerycl" target="_blank" rel="noopener" aria-label="TikTok">
+            <img loading="lazy" src="assets/icons/tiktok.webp" alt="TikTok"> TikTok
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.youtube.com/@lyonbakery" target="_blank" rel="noopener" aria-label="YouTube">
+            <img loading="lazy" src="assets/icons/youtube.webp" alt="YouTube"> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footer-year">2026</span> Lyon Bakery. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Boton flotante WhatsApp -->
+  <a href="https://wa.me/573012387327" class="whatsapp-fijo" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <span class="tooltip">Contactanos por WhatsApp</span>
+    <img loading="lazy" src="assets/icons/whatsapp.webp" alt="" aria-hidden="true" width="28" height="28">
+  </a>
+
+  <!-- Botón flotante "Ir a un servicio" -->
+  <div class="nav-flotante" id="nav-flotante">
+    <div class="nav-flotante-menu" id="nav-flotante-menu">
+      <a href="#loncheras" class="nav-item-flotante">Loncheras para Niños</a>
+      <a href="#adultos" class="nav-item-flotante">Lonchera Adultos</a>
+      <a href="#pan-artesanal" class="nav-item-flotante">Pan Artesanal</a>
+      <a href="#vinagretas" class="nav-item-flotante">Vinagretas Artesanales</a>
+      <a href="#navidad" class="nav-item-flotante">Menú Navideño 2025</a>
+      <a href="#cursos" class="nav-item-flotante">Clases y Cursos</a>
+      <a href="#catering" class="nav-item-flotante">Catering y Montajes</a>
+      <a href="#especializada" class="nav-item-flotante">Alimentación Especializada y Asesoría</a>
+      <a href="#maquila" class="nav-item-flotante">Maquila para Restaurantes</a>
+    </div>
+    <button class="nav-flotante-btn" id="nav-flotante-btn" aria-label="Ir a un servicio">
+      <span class="nav-flotante-icono">&#9776;</span> Ir a un servicio
+    </button>
+  </div>
+
+  <script>
+    // Menu hamburguesa
+    var toggle = document.querySelector('.menu-toggle');
+    var navbar = document.getElementById('navbar');
+    toggle.addEventListener('click', function() {
+      var isOpen = navbar.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Scroll suave con offset
+    function scrollToSection(targetId) {
+      var target = document.getElementById(targetId);
+      if (!target) return;
+      var header = document.querySelector('.header');
+      var headerH = header ? header.offsetHeight : 0;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - headerH - 24;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+
+    // Dropdown original
+    document.querySelectorAll('.dropdown-content a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollToSection(this.getAttribute('href').slice(1));
+      });
+    });
+
+    // ── Acordeones ──
+    document.querySelectorAll('.accordion-trigger').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var targetId = this.getAttribute('data-target');
+        var content  = document.getElementById(targetId);
+        var isOpen   = content.classList.contains('abierto');
+
+        // Cierra todos los demás primero
+        document.querySelectorAll('.accordion-content.abierto').forEach(function(c) {
+          c.classList.remove('abierto');
+        });
+        document.querySelectorAll('.accordion-trigger.abierto').forEach(function(b) {
+          b.classList.remove('abierto');
+          b.setAttribute('aria-expanded', 'false');
+          b.querySelector('.acc-icono').style.transform = '';
+          // Restaurar texto
+          var txt = b.querySelector('span:last-child');
+          if (txt && txt.className !== 'acc-icono') txt.textContent = ' Ver menú completo';
+        });
+
+        if (!isOpen) {
+          content.classList.add('abierto');
+          this.classList.add('abierto');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Botón flotante — mostrar al bajar 300px
+    var navFlotante    = document.getElementById('nav-flotante');
+    var navFlotanteBtn = document.getElementById('nav-flotante-btn');
+    var navFlotanteMenu = document.getElementById('nav-flotante-menu');
+
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        navFlotante.style.display = 'block';
+      } else {
+        navFlotante.style.display = 'none';
+        navFlotanteMenu.classList.remove('abierto');
+      }
+    });
+
+    navFlotanteBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      navFlotanteMenu.classList.toggle('abierto');
+    });
+
+    document.querySelectorAll('.nav-item-flotante').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        navFlotanteMenu.classList.remove('abierto');
+        scrollToSection(this.getAttribute('href').slice(1));
+      });
+    });
+
+    document.addEventListener('click', function() {
+      navFlotanteMenu.classList.remove('abierto');
+    });
+  </script>
+
+</body>
+</html>

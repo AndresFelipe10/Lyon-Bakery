@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lyon Bakery Cali – Cocina saludable, artesanal y consciente. Loncheras para ninos, pan de masa madre, vinagretas y catering en Cali. Sin conservantes ni colorantes.">
+  <title>Inicio - Lyon Bakery Cali | Cocina Saludable y Artesanal</title>
+  <meta property="og:title" content="Lyon Bakery Cali – Cocina Saludable y Artesanal">
+  <meta property="og:description" content="Loncheras para ninos, pan de masa madre, vinagretas artesanales y catering en Cali. Sin conservantes ni colorantes.">
+  <meta property="og:image" content="assets/images/inicio.webp">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css\style.css">
+  </head>
+  <style>
+    /* Historia colapsable */
+    .historia-extra {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    .historia-extra.visible {
+      max-height: 800px;
+      opacity: 1;
+    }
+    .btn-leer-mas {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      background: none;
+      border: none;
+      color: #D4AF37;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .btn-leer-mas:hover { color: #a8891e; }
+    .lm-icono {
+      display: inline-block;
+      font-style: normal;
+      transition: transform 0.3s ease;
+      font-size: 0.75rem;
+    }
+    .btn-leer-mas.abierto .lm-icono {
+      transform: rotate(180deg);
+    }
+
+    /* Misión compacta */
+    .mision-card {
+      background: var(--gray-light, #f8f8f8);
+      border-left: 4px solid #D4AF37;
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .mision-card p { color: #555; font-size: 0.97rem; line-height: 1.75; margin: 0; }
+
+    /* Valores con línea decorativa */
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .valor-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: #fff;
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 10px;
+      padding: 16px 18px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-align: left;
+    }
+    .valor-item:hover {
+      box-shadow: 0 4px 16px rgba(212,175,55,0.15);
+      transform: translateY(-2px);
+    }
+    .valor-marca {
+      width: 3px;
+      min-width: 3px;
+      height: 36px;
+      background: #D4AF37;
+      border-radius: 2px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .valor-texto strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.93rem;
+      color: #1a1a1a;
+      margin-bottom: 3px;
+      font-weight: 700;
+    }
+    .valor-texto span {
+      font-size: 0.82rem;
+      color: #888;
+      line-height: 1.45;
+    }
+
+    /* Logo móvil */
+    @media (max-width: 768px) {
+      .logo { width: 65px !important; height: 65px !important; }
+    }
+  </style>
+  
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.html" aria-label="Ir al inicio">
+      <img src="assets\images\logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90" fetchpriority="high">
+    </a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navbar" id="navbar" aria-label="Navegacion principal">
+      <a href="index.html" class="activo">Inicio</a>
+      <a href="sobre-mi.html">Sobre mi</a>
+      <a href="servicios.html">Nuestros servicios</a>
+      <a href="galeria.html">Galeria</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="contenido">
+
+    <!-- HERO -->
+    <h1 class="titulo-principal">Bienvenidos a Lyon Bakery</h1>
+    <div class="bienvenida">
+      <p><em>Cocina saludable, consciente y adaptada a tus necesidades</em></p>
+    </div>
+
+    <div class="imagen-inicio" style="margin:20px auto;">
+      <img src="assets/images/inicio.webp" alt="Chef Dariella Gomez, fundadora de Lyon Bakery Cali" width="320" height="320" style="max-width:320px;" fetchpriority="high">
+    </div>
+
+    <div class="hero-cta">
+      <a href="servicios.html" class="btn-primary">Ver nuestros productos</a>
+      <a href="contacto.html" class="btn-secondary">Hacer un pedido</a>
+    </div>
+
+    <!-- GOOGLE BUSINESS -->
+    <section class="seccion google-business-section" id="ubicacion">
+      <h2 class="titulo-seccion">Encuentranos</h2>
+
+      <div class="gb-card">
+
+        <!-- Mapa + info -->
+        <div class="gb-left">
+          <div class="gb-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3982.9416582327676!2d-76.5293891!3d3.3644363!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a14d8d4296bf%3A0xe3ef4d0e60b33e07!2sLyon%20bakery%20cl!5e0!3m2!1ses!2sco!4v1777757820034!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              width="100%" height="210" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicacion Lyon Bakery Cali en Google Maps">
+            </iframe>
+          </div>
+          <div class="gb-info">
+            <div class="gb-nombre-row">
+              <span class="gb-nombre">Lyon Bakery CL</span>
+              <span class="gb-tipo">Restaurante</span>
+            </div>
+            <div class="gb-rating-row">
+              <span class="gb-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="gb-rating-num">5,0</span>
+              <a href="https://www.google.com/search?q=Lyon+bakery+cl+Opiniones" target="_blank" rel="noopener" class="gb-reviews-link">15 opiniones en Google</a>
+            </div>
+            <p class="gb-precio">$ 70.000 - 80.000 · por persona</p>
+            <div class="gb-detail-row">
+              <span class="gb-detail-icon">&#128205;</span>
+              <span>Cl. 20 #101a-37, Ciudad Jardin, Cali</span>
+            </div>
+            <div class="gb-detail-row">
+              <span class="gb-detail-icon">&#128222;</span>
+              <span>301 238 7327</span>
+            </div>
+            <div class="gb-detail-row">
+              <span class="gb-detail-icon">&#128336;</span>
+              <span>Lunes a Sabado · 8:00 a.m. – 6:00 p.m.</span>
+            </div>
+            <div class="gb-actions">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Cl.+20+%23101a-37+Ciudad+Jardin+Cali" target="_blank" rel="noopener" class="gb-action-btn">Como llegar</a>
+              <a href="tel:3012387327" class="gb-action-btn">Llamar</a>
+              <a href="https://www.google.com/search?q=Lyon+bakery+cl+Opiniones" target="_blank" rel="noopener" class="gb-action-btn">Opiniones</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reseñas -->
+        <div class="gb-right">
+          <div class="gb-reviews-header">
+            <span class="gb-reviews-title">Resenas de clientes</span>
+            <div class="gb-avg">
+              <span class="gb-avg-num">5,0</span>
+              <div class="gb-avg-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <span class="gb-avg-total">15 resenas</span>
+            </div>
+          </div>
+
+          <div class="gb-reviews-list">
+            <!-- RESEÑAS: reemplaza el texto entre comillas con las opiniones reales de tus clientes en Google -->
+            <div class="gb-review">
+              <div class="gb-review-top">
+                <div class="gb-avatar">D</div>
+                <div>
+                  <p class="gb-review-author">Andrea Garces</p>
+                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <p class="gb-review-text">"Excelente el servicio, la comida y la presentación para las fiestas y reuniones me encanto 10 de 10 súper recomendada para tus eventos y ocasiones especiales"</p>
+            </div>
+
+            <div class="gb-review">
+              <div class="gb-review-top">
+                <div class="gb-avatar">A</div>
+                <div>
+                  <p class="gb-review-author">Gabriela Vega</p>
+                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <p class="gb-review-text">"Muy linda persona la chef 👩🏻‍🍳, la comida es deliciosa, todo súper bien"</p>
+            </div>
+
+            <div class="gb-review">
+              <div class="gb-review-top">
+                <div class="gb-avatar">C</div>
+                <div>
+                  <p class="gb-review-author">Luisa Garcia</p>
+                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <p class="gb-review-text">"Una grata experiencia. La comida exquisita y el servicio, el mejor!!!"</p>
+            </div>
+
+            <div class="gb-review">
+              <div class="gb-review-top">
+                <div class="gb-avatar">J</div>
+                <div>
+                  <p class="gb-review-author">Jenny Vargas</p>
+                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                </div>
+              </div>
+              <p class="gb-review-text">"Sencillamente delicioso, cada bocado es una nueva experiencia al paladar"</p>
+            </div>
+          </div>
+
+          <a href="https://www.google.com/search?q=Lyon+bakery+cl+Opiniones" target="_blank" rel="noopener" class="gb-ver-mas">
+            Ver todas las opiniones en Google &rarr;
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QUIENES SOMOS -->
+    <section class="seccion" id="quienes-somos">
+      <h2 class="titulo-seccion">Quienes somos</h2>
+      <p>En <strong>Lyon Bakery</strong> somos una cocina oculta dedicada a crear experiencias gastronomicas saludables, deliciosas y responsables. Elaboramos todos nuestros productos <strong>sin conservantes ni colorantes artificiales</strong>, utilizando procesos de <strong>ultracongelado y empaque al vacio</strong> que garantizan frescura, sabor y calidad nutricional.</p>
+      <p>Nos especializamos en brindar soluciones alimentarias practicas y conscientes, adaptadas a diferentes estilos de vida, condiciones de salud y necesidades personales o empresariales.</p>
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="seccion" id="historia">
+      <h2 class="titulo-seccion">Nuestra Historia</h2>
+      <p>Lyon nace como un sueno en 2007 y toma forma en 2017 impulsado por algo profundamente personal: nuestra hija Dariana participo en un estudio medico en Madrid que revelo que su estabilidad de salud se debia directamente a una alimentacion natural, casera y libre de quimicos desde pequena.</p>
+
+      <div class="historia-extra" id="historia-extra" aria-hidden="true">
+        <p>Esa noticia cambio nuestra vida. Recorde entonces a mi abuelo, un campesino sabio que con 104 años sigue lucido y fuerte. Siempre decia que su salud se debia a una alimentacion limpia, sin aditivos ni procesados.</p>
+        <p>A partir de ahi, Lyon tomo un nuevo sentido: nos comprometimos a ofrecer una propuesta de alimentacion consciente, natural y saludable, pensada para nutrir y cuidar a toda la familia.</p>
+        <p>En 2019 abrimos nuestro primer local en Cali, y desde entonces hemos crecido con amor y conviccion, siendo pioneros en promover una alimentacion familiar que sana, nutre y transforma. Lyon no es solo comida. Es un estilo de vida.</p>
+      </div>
+
+      <button class="btn-leer-mas" id="btn-historia" aria-expanded="false" aria-controls="historia-extra">
+        <i class="lm-icono" aria-hidden="true">&#9660;</i>
+        <span id="btn-historia-texto">Leer historia completa</span>
+      </button>
+    </section>
+
+    <!-- MISION -->
+    <section class="seccion" id="mision">
+      <h2 class="titulo-seccion">Nuestra Mision</h2>
+      <div class="mision-card">
+        <p>Transformar vidas a traves de una alimentacion consciente, natural y saludable. Cocinamos con proposito, usando ingredientes reales y elaborados con amor para cuidar a toda la familia. Mas que una empresa, somos una familia que cocina con proposito y sirve con el corazon.</p>
+      </div>
+    </section>
+
+    <!-- VISION -->
+    <section class="seccion" id="vision">
+      <h2 class="titulo-seccion">Vision</h2>
+      <div class="vision-cards">
+        <div class="vision-card">
+          <span class="vision-label">1 Año</span>
+          <span class="vision-fase">Consolidacion local</span>
+          <p>Referente de alimentacion consciente en Cali.</p>
+          <ul>
+            <li>100+ familias impactadas</li>
+            <li>Programa "Comer para vivir bien"</li>
+          </ul>
+        </div>
+        <div class="vision-card">
+          <span class="vision-label">5 Años</span>
+          <span class="vision-fase">Expansion nacional</span>
+          <p>Marca inspiradora en Colombia.</p>
+          <ul>
+            <li>Presencia en 2+ ciudades</li>
+            <li>1.000+ familias impactadas</li>
+          </ul>
+        </div>
+        <div class="vision-card">
+          <span class="vision-label">10 Años</span>
+          <span class="vision-fase">Movimiento internacional</span>
+          <p>Un legado que trasciende fronteras.</p>
+          <ul>
+            <li>10.000+ vidas transformadas</li>
+            <li>Fundacion Lyon activa</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALORES — barra dorada en lugar de emojis -->
+    <section class="seccion" id="valores">
+      <h2 class="titulo-seccion">Valores de Lyon</h2>
+      <div class="valores-grid">
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Salud como estilo de vida</strong><span>La salud empieza en la cocina, no en una farmacia.</span></div></div>
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Proposito antes que negocio</strong><span>Cocinamos para transformar vidas.</span></div></div>
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Amor por lo natural</strong><span>Ingredientes reales, comida hecha con carino.</span></div></div>
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Familia como centro</strong><span>Cuidamos a todos como en casa.</span></div></div>
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Conciencia en cada accion</strong><span>Todo lo que hacemos tiene intencion positiva.</span></div></div>
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Excelencia desde la raiz</strong><span>Cuidamos cada detalle con respeto y dedicacion.</span></div></div>
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Educacion como cambio</strong><span>Ensenamos alimentacion consciente.</span></div></div>
+        <div class="valor-item"><div class="valor-marca"></div><div class="valor-texto"><strong>Legado de amor</strong><span>Lyon trasciende generaciones.</span></div></div>
+      </div>
+    </section>
+
+    <!-- MANIFIESTO -->
+    <section class="seccion" id="manifiesto">
+      <h2 class="titulo-seccion">Manifiesto Lyon</h2>
+      <div class="manifiesto-box">
+        <p class="cita">"Aqui no venimos solo a cocinar, venimos a transformar vidas."</p>
+        <p>Alimentar con amor es un acto revolucionario. La verdadera abundancia esta en compartir lo que nutre de verdad. Sin quimicos, sin atajos, sin culpa. Solo ingredientes reales y decisiones conscientes.</p>
+        <p><strong style="color:#D4AF37;font-family:'Playfair Display',serif;font-size:1.05rem;">Lyon no es solo una cocina. Es un movimiento.</strong></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Lyon Bakery</h4>
+        <p>Cocina saludable, consciente y adaptada a tus necesidades. Cali, Colombia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegacion</h4>
+        <a href="index.html">Inicio</a>
+        <a href="sobre-mi.html">Sobre mi</a>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="galeria.html">Galeria</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>301 238 7327</p>
+        <p>mayorackgrupo&#64;gmail.com</p>
+        <p>Cali, Colombia</p>
+      </div>
+      <div class="footer-col">
+        <h4>Redes sociales</h4>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="assets/icons/instagram.webp" alt="Instagram"> Instagram
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.tiktok.com/@lyon_bakerycl" target="_blank" rel="noopener" aria-label="TikTok">
+            <img src="assets/icons/tiktok.webp" alt="TikTok"> TikTok
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.youtube.com/@lyonbakery" target="_blank" rel="noopener" aria-label="YouTube">
+            <img src="assets/icons/youtube.webp" alt="YouTube"> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footer-year"></span> Lyon Bakery. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573012387327" class="whatsapp-fijo" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <span class="tooltip">Contactanos por WhatsApp</span>
+    <img src="assets/icons/whatsapp.webp" alt="" aria-hidden="true" width="28" height="28">
+  </a>
+
+  <script>
+    // Año dinamico en footer
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Menu hamburguesa
+    var toggle = document.querySelector('.menu-toggle');
+    var navbar = document.getElementById('navbar');
+    toggle.addEventListener('click', function() {
+      var isOpen = navbar.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Historia — leer mas / leer menos
+    // Usamos referencias directas a cada elemento para evitar bugs con span:last-child
+    var btnHistoria   = document.getElementById('btn-historia');
+    var historiaExtra = document.getElementById('historia-extra');
+    var btnTexto      = document.getElementById('btn-historia-texto');
+    var estaAbierto   = false;
+
+    btnHistoria.addEventListener('click', function() {
+      estaAbierto = !estaAbierto;
+
+      if (estaAbierto) {
+        historiaExtra.classList.add('visible');
+        historiaExtra.setAttribute('aria-hidden', 'false');
+        btnHistoria.classList.add('abierto');
+        btnHistoria.setAttribute('aria-expanded', 'true');
+        btnTexto.textContent = 'Leer menos';
+      } else {
+        historiaExtra.classList.remove('visible');
+        historiaExtra.setAttribute('aria-hidden', 'true');
+        btnHistoria.classList.remove('abierto');
+        btnHistoria.setAttribute('aria-expanded', 'false');
+        btnTexto.textContent = 'Leer historia completa';
+      }
+    });
+  </script>
+
+</body>
+</html>

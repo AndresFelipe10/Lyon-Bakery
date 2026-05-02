@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galería de Lyon Bakery – Explora nuestras creaciones artesanales y saludables en Cali, Colombia.">
+  <title>Galería - Lyon Bakery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  </head>
+  
+  <style>
+
+    /* ── Skeleton placeholder mientras carga la imagen ── */
+    .galeria-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0f0f0;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      will-change: transform;
+      contain: layout style paint;
+    }
+
+    .galeria-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: skeleton-shimmer 1.4s infinite;
+      z-index: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .galeria-item.loaded::before {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes skeleton-shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── Imagen dentro del item ── */
+    .galeria-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+      opacity: 0;
+      transition: opacity 0.45s ease, transform 0.35s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .galeria-item.loaded img {
+      opacity: 1;
+    }
+
+    .galeria-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ── Overlay sutil en hover ── */
+    .galeria-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(212, 175, 55, 0.08);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 3;
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    .galeria-item:hover::after { opacity: 1; }
+
+    /* ── Sección botón cargar más ── */
+    .galeria-footer {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    #btn-cargar-mas {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #D4AF37;
+      border: 2px solid #D4AF37;
+      padding: 13px 36px;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    #btn-cargar-mas:hover {
+      background: #D4AF37;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(212,175,55,0.35);
+    }
+
+    #btn-cargar-mas:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Spinner dentro del botón */
+    .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    #btn-cargar-mas.loading .spinner { display: block; }
+    #btn-cargar-mas.loading .btn-texto { display: none; }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .galeria-contador {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: #999;
+      font-family: 'Lato', sans-serif;
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.93);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      object-fit: contain;
+      transition: opacity 0.2s ease;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2.4rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(212,175,55,0.2);
+      border: 2px solid #D4AF37;
+      color: #D4AF37;
+      font-size: 1.8rem;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lightbox-prev:hover,
+    .lightbox-next:hover { background: rgba(212,175,55,0.45); }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 18px;
+      color: #aaa;
+      font-size: 13px;
+      font-family: 'Lato', sans-serif;
+    }
+
+    /* ── Responsive ajuste grid ── */
+    @media (max-width: 480px) {
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    }
+  </style>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.html" aria-label="Ir al inicio"><img src="assets/images/logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90"></a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navbar">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navbar" id="navbar" aria-label="Navegación principal">
+      <a href="index.html">Inicio</a>
+      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="servicios.html">Nuestros servicios</a>
+      <a href="galeria.html" class="activo">Galería</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="contenido">
+    <h1 class="titulo-principal">Galería</h1>
+    <p style="max-width:600px;margin:0 auto 10px;color:#555;">
+      Explora nuestras creaciones artesanales, momentos especiales y el arte de la cocina saludable en Lyon Bakery.
+    </p>
+    <p style="color:#bbb;font-size:0.82rem;margin-bottom:36px;">
+      Haz clic en cualquier imagen para verla ampliada.
+    </p>
+
+    <!-- El grid se puebla dinámicamente desde JS -->
+    <section class="galeria-grid" id="galeria-grid" aria-label="Galería de productos">
+    </section>
+
+    <!-- Botón cargar más + contador -->
+    <div class="galeria-footer">
+      <button id="btn-cargar-mas" aria-label="Cargar más imágenes">
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="btn-texto">Cargar más fotos</span>
+      </button>
+      <p class="galeria-contador" id="galeria-contador"></p>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de imagen">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Imagen anterior">&#8249;</button>
+    <img id="lightbox-img" src="" alt="Imagen ampliada">
+    <button class="lightbox-next" id="lightbox-next" aria-label="Imagen siguiente">&#8250;</button>
+    <span class="lightbox-counter" id="lightbox-counter"></span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Lyon Bakery</h4>
+        <p>Cocina saludable, consciente y adaptada a tus necesidades. Cali, Colombia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="index.html">Inicio</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <p>301 238 7327</p>
+        <p>mayorackgrupo&#64;gmail.com</p>
+        <p>Cali, Colombia</p>
+      </div>
+      <div class="footer-col">
+        <h4>Redes sociales</h4>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="assets/icons/instagram.webp" alt="Instagram"> Instagram
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.tiktok.com/@lyon_bakerycl" target="_blank" rel="noopener" aria-label="TikTok">
+            <img src="assets/icons/tiktok.webp" alt="TikTok"> TikTok
+          </a>
+        </div>
+        <div class="footer-social-links">
+          <a href="https://www.youtube.com/@lyonbakery" target="_blank" rel="noopener" aria-label="YouTube">
+            <img src="assets/icons/youtube.webp" alt="YouTube"> YouTube
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footer-year">2026</span> Lyon Bakery. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/573012387327" class="whatsapp-fijo" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <span class="tooltip">Contáctanos por WhatsApp</span>
+    <img src="assets/icons/whatsapp.webp" alt="" aria-hidden="true" width="28" height="28">
+  </a>
+
+  <script>
+  (function () {
+
+    /* ================================================
+       1. LISTA DE IMÁGENES
+       Agrega o quita imágenes aquí según los archivos
+       que tengas en assets/galeria/
+       ================================================ */
+    var IMAGENES = [
+      { src: 'assets/galeria/galeria1.webp',  alt: 'Preparación artesanal 1' },
+      { src: 'assets/galeria/galeria3.webp',  alt: 'Preparación artesanal 3' },
+      { src: 'assets/galeria/galeria4.webp',  alt: 'Preparación artesanal 4' },
+      { src: 'assets/galeria/galeria5.webp',  alt: 'Preparación artesanal 5' },
+      { src: 'assets/galeria/galeria6.webp',  alt: 'Preparación artesanal 6' },
+      { src: 'assets/galeria/galeria8.webp',  alt: 'Preparación artesanal 8' },
+      { src: 'assets/galeria/galeria10.webp', alt: 'Preparación artesanal 10' },
+      { src: 'assets/galeria/galeria11.webp', alt: 'Preparación artesanal 11' },
+      { src: 'assets/galeria/galeria12.webp', alt: 'Preparación artesanal 12' },
+      { src: 'assets/galeria/galeria14.webp', alt: 'Preparación artesanal 14' },
+      { src: 'assets/galeria/galeria15.webp', alt: 'Preparación artesanal 15' },
+      { src: 'assets/galeria/galeria17.webp', alt: 'Preparación artesanal 17' },
+      { src: 'assets/galeria/galeria20.webp', alt: 'Preparación artesanal 20' },
+      { src: 'assets/galeria/galeria21.webp', alt: 'Preparación artesanal 21' },
+      { src: 'assets/galeria/galeria22.webp', alt: 'Preparación artesanal 22' },
+      { src: 'assets/galeria/galeria23.webp', alt: 'Preparación artesanal 23' },
+      { src: 'assets/galeria/galeria24.webp', alt: 'Preparación artesanal 24' },
+      { src: 'assets/galeria/galeria25.webp', alt: 'Preparación artesanal 25' }
+      /* Si tienes más, agrégalas aquí con el mismo formato */
+    ];
+
+    /* ================================================
+       2. CONFIGURACIÓN
+       ================================================ */
+    var TANDA_INICIAL  = 6;   // imágenes visibles al cargar la página
+    var TANDA_SIGUIENTE = 6;  // imágenes que se agregan al pulsar "Cargar más"
+
+    /* ================================================
+       3. ESTADO
+       ================================================ */
+    var cargadas    = 0;       // cuántas ya están en el DOM
+    var itemsVisibles = [];    // todos los .galeria-item del DOM
+    var lightboxIndex = 0;
+
+    /* ================================================
+       4. ELEMENTOS DEL DOM
+       ================================================ */
+    var grid       = document.getElementById('galeria-grid');
+    var btnMas     = document.getElementById('btn-cargar-mas');
+    var contador   = document.getElementById('galeria-contador');
+    var lightbox   = document.getElementById('lightbox');
+    var lbImg      = document.getElementById('lightbox-img');
+    var lbCounter  = document.getElementById('lightbox-counter');
+
+    /* ================================================
+       5. IntersectionObserver — activa la carga real
+          de cada imagen solo cuando entra en pantalla
+       ================================================ */
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var item = entry.target;
+        var img  = item.querySelector('img');
+        var src  = img.getAttribute('data-src');
+        if (!src) return;
+
+        img.src = src;
+        img.removeAttribute('data-src');
+
+        img.addEventListener('load', function() {
+          item.classList.add('loaded');
+        });
+        img.addEventListener('error', function() {
+          // Si la imagen falla, quita el shimmer igual
+          item.classList.add('loaded');
+        });
+
+        observer.unobserve(item);  // deja de observar una vez activada
+      });
+    }, {
+      rootMargin: '150px 0px',   // empieza a cargar 150px antes de ser visible
+      threshold: 0
+    });
+
+    /* ================================================
+       6. Crear y agregar items al grid
+       ================================================ */
+    function crearItem(imagen, globalIndex) {
+      var item = document.createElement('div');
+      item.className = 'galeria-item';
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', 'Ver ' + imagen.alt);
+
+      var img = document.createElement('img');
+      img.setAttribute('data-src', imagen.src);   // SRC real va en data-src
+      img.src = '';                                // vacío hasta que Observer lo active
+      img.alt = imagen.alt;
+      img.width  = 400;
+      img.height = 400;
+
+      item.appendChild(img);
+      item.addEventListener('click', function() { abrirLightbox(globalIndex); });
+      item.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') abrirLightbox(globalIndex);
+      });
+
+      return item;
+    }
+
+    function agregarTanda(cantidad) {
+      var desde = cargadas;
+      var hasta = Math.min(cargadas + cantidad, IMAGENES.length);
+
+      for (var i = desde; i < hasta; i++) {
+        var item = crearItem(IMAGENES[i], i);
+        grid.appendChild(item);
+        itemsVisibles.push(item);
+        observer.observe(item);   // el Observer decide cuándo cargar realmente
+      }
+
+      cargadas = hasta;
+      actualizarUI();
+    }
+
+    function actualizarUI() {
+      var restantes = IMAGENES.length - cargadas;
+      contador.textContent = 'Mostrando ' + cargadas + ' de ' + IMAGENES.length + ' fotos';
+
+      if (restantes <= 0) {
+        btnMas.style.display = 'none';
+        contador.textContent = 'Has visto todas las fotos (' + IMAGENES.length + ')';
+      }
+    }
+
+    /* ================================================
+       7. Botón "Cargar más"
+       ================================================ */
+    btnMas.addEventListener('click', function() {
+      btnMas.classList.add('loading');
+      btnMas.disabled = true;
+
+      // Pequeño delay visual para que el spinner se vea
+      setTimeout(function() {
+        agregarTanda(TANDA_SIGUIENTE);
+        btnMas.classList.remove('loading');
+        btnMas.disabled = false;
+      }, 350);
+    });
+
+    /* ================================================
+       8. Lightbox
+       ================================================ */
+    function abrirLightbox(index) {
+      lightboxIndex = index;
+      lbImg.style.opacity = '0';
+      lbImg.src = IMAGENES[index].src;
+      lbImg.alt = IMAGENES[index].alt;
+      lbImg.onload = function() { lbImg.style.opacity = '1'; };
+      lbCounter.textContent = (index + 1) + ' / ' + IMAGENES.length;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function prevImg() {
+      lightboxIndex = (lightboxIndex - 1 + IMAGENES.length) % IMAGENES.length;
+      abrirLightbox(lightboxIndex);
+    }
+
+    function nextImg() {
+      lightboxIndex = (lightboxIndex + 1) % IMAGENES.length;
+      abrirLightbox(lightboxIndex);
+    }
+
+    document.getElementById('lightbox-close').addEventListener('click', cerrarLightbox);
+    document.getElementById('lightbox-prev').addEventListener('click', prevImg);
+    document.getElementById('lightbox-next').addEventListener('click', nextImg);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) cerrarLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape')      cerrarLightbox();
+      if (e.key === 'ArrowLeft')   prevImg();
+      if (e.key === 'ArrowRight')  nextImg();
+    });
+
+    /* ================================================
+       9. Menú hamburguesa
+       ================================================ */
+    var toggle = document.querySelector('.menu-toggle');
+    var navbar = document.getElementById('navbar');
+    toggle.addEventListener('click', function() {
+      var isOpen = navbar.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    /* ================================================
+       10. ARRANQUE — carga la primera tanda
+       ================================================ */
+    agregarTanda(TANDA_INICIAL);
+
+  })();
+  </script>
+
+</body>
+</html>
