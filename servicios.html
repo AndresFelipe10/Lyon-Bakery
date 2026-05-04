@@ -8,11 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
-  
-  <link rel="canonical" href="https://tudominio.com/servicios.html">
-  <link rel="icon" type="image/png" href="assets/images/favicon.png">
-  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-</head>
+  </head>
   
   <style>
     /* Offset para compensar el header sticky en desktop */
@@ -212,26 +208,49 @@
       transform: rotate(180deg);
     }
 
-    /* Contenido desplegable */
+    /* Contenido desplegable — transición max-height para evitar saltos de layout */
     .accordion-content {
-      display: none;
-      margin-top: 20px;
-      animation: fadeSlide 0.3s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-top: 0;
+      transition: max-height 0.45s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
     .accordion-content.abierto {
-      display: block;
+      max-height: 6000px;
+      opacity: 1;
+      margin-top: 20px;
+      transition: max-height 0.5s ease, opacity 0.35s ease 0.05s, margin-top 0.3s ease;
     }
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(-8px); }
-      to   { opacity: 1; transform: translateY(0); }
+  
+    /* ── Imágenes de fondo por sección de servicio ── */
+    .servicio-con-imagen {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 8px;
     }
-  </style>
+    .servicio-overlay {
+      position: relative;
+      z-index: 1;
+      padding: 48px 24px;
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 12px;
+    }
+    /* En móvil la transparencia es ligeramente mayor para mejor legibilidad */
+    @media (max-width: 768px) {
+      .servicio-overlay { background: rgba(255, 255, 255, 0.92); padding: 32px 16px; }
+    }
+</style>
 
 <body>
 
   <!-- HEADER -->
   <header class="header">
-    <a href="index.html" aria-label="Ir al inicio"><img src="assets/images/logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90" fetchpriority="high"></a>
+    <a href="index.html" aria-label="Ir al inicio"><img src="assets/images/logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90"></a>
     <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar">
       <span></span><span></span><span></span>
     </button>
@@ -268,7 +287,8 @@
     <!-- =============================================
          LONCHERAS SALUDABLES PARA NIÑOS
          ============================================= -->
-    <section class="servicio-section" id="loncheras">
+    <section class="servicio-section servicio-con-imagen" id="loncheras" style="background-image:url('assets/images/niños.webp');">
+      <div class="servicio-overlay">
       <div class="titulo-con-icono">
         <img src="assets/icons/logo-kids.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
         <h2>Loncheras Saludables para Niños</h2>
@@ -407,12 +427,15 @@
           </div>
         </div><!-- /accordion-content -->
       </div><!-- /accordion-wrap -->
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- =============================================
          LONCHERA CONSCIENTE — ADULTOS
          ============================================= -->
-    <section class="servicio-section" id="adultos">
+    <section class="servicio-section servicio-con-imagen" id="adultos" style="background-image:url('assets/images/adultos.webp');">
+      <div class="servicio-overlay">
       <div class="titulo-con-icono">
         <img src="assets/icons/menu_adultos.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
         <h2>Lonchera Consciente — Adultos</h2>
@@ -525,12 +548,15 @@
           </div>
         </div><!-- /accordion-content -->
       </div><!-- /accordion-wrap -->
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- =============================================
          LÍNEA DORADA — PAN ARTESANAL
          ============================================= -->
-    <section class="servicio-section" id="pan-artesanal">
+    <section class="servicio-section servicio-con-imagen" id="pan-artesanal" style="background-image:url('assets/images/panaderia.webp');">
+      <div class="servicio-overlay">
       <div class="titulo-con-icono">
         <img src="assets/icons/icono_linea_dorada.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
         <h2>Línea Dorada — Pan Artesanal</h2>
@@ -642,12 +668,15 @@
           </div>
         </div><!-- /accordion-content -->
       </div><!-- /accordion-wrap -->
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- =============================================
          LYON ROOTS — VINAGRETAS ARTESANALES
          ============================================= -->
-    <section class="servicio-section" id="vinagretas">
+    <section class="servicio-section servicio-con-imagen" id="vinagretas" style="background-image:url('assets/images/vinagretas.webp');">
+      <div class="servicio-overlay">
       <div class="titulo-con-icono">
         <img src="assets/icons/icono_roots.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
         <h2>Lyon Roots — Vinagretas Artesanales</h2>
@@ -728,12 +757,15 @@
           </div>
         </div><!-- /accordion-content -->
       </div><!-- /accordion-wrap -->
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- =============================================
          MENÚ NAVIDEÑO
          ============================================= -->
-    <section class="servicio-section" id="navidad">
+    <section class="servicio-section servicio-con-imagen" id="navidad" style="background-image:url('assets/images/niños.webp');">
+      <div class="servicio-overlay">
       <div class="titulo-con-icono">
         <img src="assets/icons/icono_navideño.webp" alt="" aria-hidden="true" class="icono-subtitulo" loading="eager">
         <h2>Menú Navideño 2025</h2>
@@ -868,12 +900,15 @@
           </div>
         </div><!-- /accordion-content -->
       </div><!-- /accordion-wrap -->
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- =============================================
          CURSOS
          ============================================= -->
-    <section class="servicio-section" id="cursos">
+    <section class="servicio-section servicio-con-imagen" id="cursos" style="background-image:url('assets/images/clases.webp');">
+      <div class="servicio-overlay">
       <h2>Clases y Cursos Gastronomicos</h2>
       <p>Formacion practica y personalizada, donde y como la necesites.</p>
       <ul>
@@ -883,10 +918,13 @@
         <li>Tematicas: cocina saludable, funcional, batch cooking y mas</li>
         <li>Cursos para personas con restricciones alimenticias</li>
       </ul>
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- CATERING -->
-    <section class="servicio-section" id="catering">
+    <section class="servicio-section servicio-con-imagen" id="catering" style="background-image:url('assets/images/catering.webp');">
+      <div class="servicio-overlay">
       <h2>Catering Saludable y Montajes</h2>
       <p>Alimentacion consciente para tus eventos.</p>
       <ul>
@@ -895,10 +933,13 @@
         <li>Montajes profesionales y creativos</li>
         <li>Eventos corporativos, wellness y celebraciones privadas</li>
       </ul>
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- ESPECIALIZADA Y ASESORÍA (sección fusionada) -->
-    <section class="servicio-section" id="especializada">
+    <section class="servicio-section servicio-con-imagen" id="especializada" style="background-image:url('assets/images/asesorias-personalizadas.webp');">
+      <div class="servicio-overlay">
       <h2>Alimentación Especializada y Asesoría gastronómica</h2>
       <p>Soluciones integrales que van desde la preparación personalizada de alimentos hasta el acompañamiento profesional de tu negocio gastronómico.</p>
 
@@ -928,10 +969,13 @@
       <div class="hero-cta mt-32" style="justify-content:flex-start;">
         <a href="contacto.html" class="btn-white">Solicitar asesoría</a>
       </div>
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- MAQUILA -->
-    <section class="servicio-section" id="maquila">
+    <section class="servicio-section servicio-con-imagen" id="maquila" style="background-image:url('assets/images/maquila.webp');">
+      <div class="servicio-overlay">
       <h2>Maquila para Restaurantes y Cafeterias</h2>
       <p>Produccion en gran escala con la calidad y el sabor de Lyon Bakery.</p>
       <ul>
@@ -943,6 +987,8 @@
       <div class="hero-cta mt-32" style="justify-content:flex-start;">
         <a href="contacto.html" class="btn-white">Solicitar cotizacion</a>
       </div>
+    
+    </div><!-- /servicio-overlay -->
     </section>
 
     <!-- POR QUE ELEGIRNOS -->
@@ -982,18 +1028,18 @@
       <div class="footer-col">
         <h4>Redes sociales</h4>
         <div class="footer-social-links">
-          <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram">
-            <img loading="lazy" src="assets/icons/instagram.webp" alt="Instagram"> Instagram
+          <a href="https://www.instagram.com/lyonbakery.co/" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="assets/icons/instagram.webp" alt="Instagram"> Instagram
           </a>
         </div>
         <div class="footer-social-links">
           <a href="https://www.tiktok.com/@lyon_bakerycl" target="_blank" rel="noopener" aria-label="TikTok">
-            <img loading="lazy" src="assets/icons/tiktok.webp" alt="TikTok"> TikTok
+            <img src="assets/icons/tiktok.webp" alt="TikTok"> TikTok
           </a>
         </div>
         <div class="footer-social-links">
           <a href="https://www.youtube.com/@lyonbakery" target="_blank" rel="noopener" aria-label="YouTube">
-            <img loading="lazy" src="assets/icons/youtube.webp" alt="YouTube"> YouTube
+            <img src="assets/icons/youtube.webp" alt="YouTube"> YouTube
           </a>
         </div>
       </div>
@@ -1006,7 +1052,7 @@
   <!-- Boton flotante WhatsApp -->
   <a href="https://wa.me/573012387327" class="whatsapp-fijo" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
     <span class="tooltip">Contactanos por WhatsApp</span>
-    <img loading="lazy" src="assets/icons/whatsapp.webp" alt="" aria-hidden="true" width="28" height="28">
+    <img src="assets/icons/whatsapp.webp" alt="" aria-hidden="true" width="28" height="28">
   </a>
 
   <!-- Botón flotante "Ir a un servicio" -->
@@ -1057,27 +1103,37 @@
     // ── Acordeones ──
     document.querySelectorAll('.accordion-trigger').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var targetId = this.getAttribute('data-target');
+        var self     = this;
+        var targetId = self.getAttribute('data-target');
         var content  = document.getElementById(targetId);
         var isOpen   = content.classList.contains('abierto');
 
-        // Cierra todos los demás primero
+        // Guarda la posición del botón clickeado ANTES de cualquier cambio de layout
+        var btnRect = self.getBoundingClientRect();
+        var scrollYBefore = window.pageYOffset;
+
+        // Cierra todos los demás
         document.querySelectorAll('.accordion-content.abierto').forEach(function(c) {
           c.classList.remove('abierto');
         });
         document.querySelectorAll('.accordion-trigger.abierto').forEach(function(b) {
           b.classList.remove('abierto');
           b.setAttribute('aria-expanded', 'false');
-          b.querySelector('.acc-icono').style.transform = '';
-          // Restaurar texto
-          var txt = b.querySelector('span:last-child');
-          if (txt && txt.className !== 'acc-icono') txt.textContent = ' Ver menú completo';
         });
+
+        // Si había otro abierto, el cierre cambia el layout.
+        // Restauramos inmediatamente el scroll para que el botón
+        // clickeado quede en la misma posición visual.
+        var btnRectAfter = self.getBoundingClientRect();
+        var diff = btnRectAfter.top - btnRect.top;
+        if (Math.abs(diff) > 1) {
+          window.scrollTo({ top: window.pageYOffset - diff, behavior: 'instant' });
+        }
 
         if (!isOpen) {
           content.classList.add('abierto');
-          this.classList.add('abierto');
-          this.setAttribute('aria-expanded', 'true');
+          self.classList.add('abierto');
+          self.setAttribute('aria-expanded', 'true');
         }
       });
     });
