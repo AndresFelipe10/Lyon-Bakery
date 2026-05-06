@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+
+  <link rel="canonical" href="https://lyon-bakery.vercel.app/servicios">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
   </head>
   
   <style>
@@ -240,9 +244,32 @@
       background: rgba(255, 255, 255, 0.88);
       border-radius: 12px;
     }
-    /* En móvil la transparencia es ligeramente mayor para mejor legibilidad */
+
+    /* En móvil: menor opacidad para que la imagen se vea más,
+       background-size ajustado para cubrir más área al estar el
+       contenido expandido verticalmente */
     @media (max-width: 768px) {
-      .servicio-overlay { background: rgba(255, 255, 255, 0.92); padding: 32px 16px; }
+      .servicio-con-imagen {
+        background-size: cover;
+        background-position: center top;
+        background-attachment: scroll;
+      }
+
+      @media (max-width: 768px) {
+  .logo { width: 65px !important; height: 65px !important; }
+  .footer-inner { text-align: center; }
+  .footer-social-links { justify-content: center; }
+  .footer-social-links a { justify-content: center; }
+      }
+      .servicio-overlay {
+        background: rgba(255, 255, 255, 0.78);
+        padding: 28px 16px;
+      }
+      /* Cuando el acordeón está abierto, la sección crece mucho:
+         usamos un pseudoelemento que repite la imagen para cubrir toda la altura */
+      .servicio-con-imagen.seccion-expandida {
+        background-size: cover;
+      }
     }
 </style>
 
@@ -1028,7 +1055,7 @@
       <div class="footer-col">
         <h4>Redes sociales</h4>
         <div class="footer-social-links">
-          <a href="https://www.instagram.com/lyonbakery.co/" target="_blank" rel="noopener" aria-label="Instagram">
+          <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram">
             <img src="assets/icons/instagram.webp" alt="Instagram"> Instagram
           </a>
         </div>
@@ -1134,6 +1161,19 @@
           content.classList.add('abierto');
           self.classList.add('abierto');
           self.setAttribute('aria-expanded', 'true');
+          // Marca la sección padre como expandida para CSS móvil
+          var seccion = self.closest('.servicio-con-imagen');
+          if (seccion) seccion.classList.add('seccion-expandida');
+        }
+      });
+    });
+
+    // Limpia clase seccion-expandida al cerrar
+    document.querySelectorAll('.accordion-content').forEach(function(c) {
+      c.addEventListener('transitionend', function() {
+        if (!c.classList.contains('abierto')) {
+          var seccion = c.closest('.servicio-con-imagen');
+          if (seccion) seccion.classList.remove('seccion-expandida');
         }
       });
     });
