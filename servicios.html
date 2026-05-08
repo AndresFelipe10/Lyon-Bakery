@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Servicios de Lyon Bakery: loncheras saludables, comida para adultos, catering, clases gastronómicas, asesoría y maquila. Cali, Colombia.">
-  <title>Nuestros servicios - Lyon Bakery</title>
+  <meta name="description" content="Loncheras saludables para niños, pan de masa madre, catering y vinagretas artesanales en Cali. Sin conservantes. Pedidos por WhatsApp: 301 238 7327.">
+  <title>Loncheras, Pan Artesanal y Catering Saludable | Lyon Bakery Cali</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
@@ -12,6 +12,25 @@
   <link rel="canonical" href="https://lyon-bakery.vercel.app/servicios">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Servicios Lyon Bakery",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Loncheras Saludables para Niños",
+      "url": "https://lyon-bakery.vercel.app/servicios#loncheras" },
+    { "@type": "ListItem", "position": 2, "name": "Lonchera Consciente Adultos",
+      "url": "https://lyon-bakery.vercel.app/servicios#adultos" },
+    { "@type": "ListItem", "position": 3, "name": "Pan Artesanal Masa Madre",
+      "url": "https://lyon-bakery.vercel.app/servicios#pan-artesanal" },
+    { "@type": "ListItem", "position": 4, "name": "Catering Saludable Cali",
+      "url": "https://lyon-bakery.vercel.app/servicios#catering" }
+  ]
+}
+</script>
+
   </head>
   
   <style>
@@ -212,19 +231,35 @@
       transform: rotate(180deg);
     }
 
-    /* Contenido desplegable — transición max-height para evitar saltos de layout */
+    /* Contenido desplegable */
+    /* ── BASE: visible sin JavaScript ── */
     .accordion-content {
+      margin-top: 20px;
+    }
+
+    /* ── Con JS cargado: colapsar ── */
+    .js-loaded .accordion-content {
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       margin-top: 0;
       transition: max-height 0.45s ease, opacity 0.3s ease, margin-top 0.3s ease;
     }
-    .accordion-content.abierto {
+
+    /* ── Con JS cargado + clase abierto: expandir ── */
+    .js-loaded .accordion-content.abierto {
       max-height: 6000px;
       opacity: 1;
       margin-top: 20px;
       transition: max-height 0.5s ease, opacity 0.35s ease 0.05s, margin-top 0.3s ease;
+    }
+
+    /* ── Sin JS: el botón trigger no tiene sentido, ocultarlo ── */
+    .accordion-trigger {
+      display: none;
+    }
+    .js-loaded .accordion-trigger {
+      display: inline-flex;
     }
   
     /* ── Imágenes de fondo por sección de servicio ── */
@@ -245,9 +280,6 @@
       border-radius: 12px;
     }
 
-    /* En móvil: menor opacidad para que la imagen se vea más,
-       background-size ajustado para cubrir más área al estar el
-       contenido expandido verticalmente */
     @media (max-width: 768px) {
       .servicio-con-imagen {
         background-size: cover;
@@ -256,17 +288,15 @@
       }
 
       @media (max-width: 768px) {
-  .logo { width: 65px !important; height: 65px !important; }
-  .footer-inner { text-align: center; }
-  .footer-social-links { justify-content: center; }
-  .footer-social-links a { justify-content: center; }
+        .logo { width: 65px !important; height: 65px !important; }
+        .footer-inner { text-align: center; }
+        .footer-social-links { justify-content: center; }
+        .footer-social-links a { justify-content: center; }
       }
       .servicio-overlay {
         background: rgba(255, 255, 255, 0.78);
         padding: 28px 16px;
       }
-      /* Cuando el acordeón está abierto, la sección crece mucho:
-         usamos un pseudoelemento que repite la imagen para cubrir toda la altura */
       .servicio-con-imagen.seccion-expandida {
         background-size: cover;
       }
@@ -303,7 +333,7 @@
         <a href="#adultos" role="menuitem">Lonchera Consciente — Adultos</a>
         <a href="#pan-artesanal" role="menuitem">Línea Dorada — Pan Artesanal</a>
         <a href="#vinagretas" role="menuitem">Lyon Roots — Vinagretas Artesanales</a>
-        <a href="#navidad" role="menuitem">Menú Navideño 2025 &#127876;</a>
+        <a href="#navidad" role="menuitem">Menú Navideño 2026 &#127876;</a>
         <a href="#cursos" role="menuitem">Clases y Cursos Gastronomicos</a>
         <a href="#catering" role="menuitem">Catering Saludable y Montajes</a>
         <a href="#especializada" role="menuitem">Alimentacion Especializada y Asesoría</a>
@@ -1017,8 +1047,7 @@
     
     </div><!-- /servicio-overlay -->
     </section>
-
-    <!-- POR QUE ELEGIRNOS -->
+    
     <section class="servicio-section" id="porque-elegir" style="border-bottom:none;">
       <h2>Por que elegir Lyon Bakery?</h2>
       <div class="cards-grid" style="margin-top:16px;">
@@ -1055,7 +1084,7 @@
       <div class="footer-col">
         <h4>Redes sociales</h4>
         <div class="footer-social-links">
-          <a href="https://www.instagram.com/lyonbakery.cl" target="_blank" rel="noopener" aria-label="Instagram">
+          <a href="https://www.instagram.com/lyonbakery.co" target="_blank" rel="noopener" aria-label="Instagram">
             <img src="assets/icons/instagram.webp" alt="Instagram"> Instagram
           </a>
         </div>
@@ -1101,6 +1130,8 @@
   </div>
 
   <script>
+    document.documentElement.classList.add('js-loaded');
+
     // Menu hamburguesa
     var toggle = document.querySelector('.menu-toggle');
     var navbar = document.getElementById('navbar');
@@ -1135,40 +1166,46 @@
         var content  = document.getElementById(targetId);
         var isOpen   = content.classList.contains('abierto');
 
-        // Guarda la posición del botón clickeado ANTES de cualquier cambio de layout
-        var btnRect = self.getBoundingClientRect();
-        var scrollYBefore = window.pageYOffset;
+        // Captura la sección del botón clickeado ANTES de cualquier cambio
+        var seccionClickeada = self.closest('.servicio-section');
+        var seccionTop = seccionClickeada
+          ? seccionClickeada.getBoundingClientRect().top + window.pageYOffset
+          : null;
 
-        // Cierra todos los demás
+        // Cierra todos los acordeones abiertos
         document.querySelectorAll('.accordion-content.abierto').forEach(function(c) {
           c.classList.remove('abierto');
+          var sec = c.closest('.servicio-con-imagen');
+          if (sec) sec.classList.remove('seccion-expandida');
         });
         document.querySelectorAll('.accordion-trigger.abierto').forEach(function(b) {
           b.classList.remove('abierto');
           b.setAttribute('aria-expanded', 'false');
         });
 
-        // Si había otro abierto, el cierre cambia el layout.
-        // Restauramos inmediatamente el scroll para que el botón
-        // clickeado quede en la misma posición visual.
-        var btnRectAfter = self.getBoundingClientRect();
-        var diff = btnRectAfter.top - btnRect.top;
-        if (Math.abs(diff) > 1) {
-          window.scrollTo({ top: window.pageYOffset - diff, behavior: 'instant' });
-        }
-
         if (!isOpen) {
+          // Abre el acordeón solicitado
           content.classList.add('abierto');
           self.classList.add('abierto');
           self.setAttribute('aria-expanded', 'true');
-          // Marca la sección padre como expandida para CSS móvil
           var seccion = self.closest('.servicio-con-imagen');
           if (seccion) seccion.classList.add('seccion-expandida');
+
+          // Espera a que la transición CSS termine (~500ms) y luego
+          // hace scroll al inicio de la sección clickeada con offset del header
+          if (seccionTop !== null) {
+            setTimeout(function() {
+              var header   = document.querySelector('.header');
+              var headerH  = header ? header.offsetHeight : 0;
+              var destino  = seccionTop - headerH - 24;
+              window.scrollTo({ top: destino, behavior: 'smooth' });
+            }, 520);
+          }
         }
       });
     });
 
-    // Limpia clase seccion-expandida al cerrar
+    // Limpia clase seccion-expandida al cerrar (vía transitionend)
     document.querySelectorAll('.accordion-content').forEach(function(c) {
       c.addEventListener('transitionend', function() {
         if (!c.classList.contains('abierto')) {
@@ -1179,8 +1216,8 @@
     });
 
     // Botón flotante — mostrar al bajar 300px
-    var navFlotante    = document.getElementById('nav-flotante');
-    var navFlotanteBtn = document.getElementById('nav-flotante-btn');
+    var navFlotante     = document.getElementById('nav-flotante');
+    var navFlotanteBtn  = document.getElementById('nav-flotante-btn');
     var navFlotanteMenu = document.getElementById('nav-flotante-menu');
 
     window.addEventListener('scroll', function() {
