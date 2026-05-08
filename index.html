@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Lyon Bakery Cali – Cocina saludable, artesanal y consciente. Loncheras para ninos, pan de masa madre, vinagretas y catering en Cali. Sin conservantes ni colorantes.">
-  <title>Inicio - Lyon Bakery Cali | Cocina Saludable y Artesanal</title>
+  <meta property="og:url" content="https://www.lyonbakeryco.com/">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Lyon Bakery Cali">
+  
+  <title>Lyon Bakery Cali | Cocina Saludable y Artesanal</title>
   <meta property="og:title" content="Lyon Bakery Cali – Cocina Saludable y Artesanal">
   <meta property="og:description" content="Loncheras para ninos, pan de masa madre, vinagretas artesanales y catering en Cali. Sin conservantes ni colorantes.">
   <meta property="og:image" content="assets/images/inicio.webp">
@@ -60,6 +64,27 @@
     "https://www.instagram.com/lyonbakery.co/",
     "https://www.tiktok.com/@lyon_bakerycl",
     "https://www.youtube.com/@lyonbakery"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://www.lyonbakery.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Nuestros Servicios",
+      "item": "https://www.lyonbakery.com/servicios"
+    }
   ]
 }
 </script>
@@ -173,7 +198,7 @@
   <!-- HEADER -->
   <header class="header">
     <a href="index.html" aria-label="Ir al inicio">
-      <img src="assets\images\logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90" fetchpriority="high">
+      <img src="assets/images/logo.webp" alt="Lyon Bakery Logo" class="logo" width="90" height="90" fetchpriority="high">
     </a>
     <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar">
       <span></span><span></span><span></span>
@@ -262,57 +287,73 @@
             </div>
           </div>
 
-          <div class="gb-reviews-list">
-            <!-- RESEÑAS: reemplaza el texto entre comillas con las opiniones reales de tus clientes en Google -->
-            <div class="gb-review">
-              <div class="gb-review-top">
-                <div class="gb-avatar">D</div>
-                <div>
-                  <p class="gb-review-author">Andrea Garces</p>
-                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                </div>
-              </div>
-              <p class="gb-review-text">"Excelente el servicio, la comida y la presentación para las fiestas y reuniones me encanto 10 de 10 súper recomendada para tus eventos y ocasiones especiales"</p>
-            </div>
+          <div class="gb-reviews-list" itemscope itemtype="https://schema.org/LocalBusiness">
+  <meta itemprop="name" content="Lyon Bakery Cali">
 
-            <div class="gb-review">
-              <div class="gb-review-top">
-                <div class="gb-avatar">A</div>
-                <div>
-                  <p class="gb-review-author">Gabriela Vega</p>
-                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                </div>
-              </div>
-              <p class="gb-review-text">"Muy linda persona la chef 👩🏻‍🍳, la comida es deliciosa, todo súper bien"</p>
-            </div>
-
-            <div class="gb-review">
-              <div class="gb-review-top">
-                <div class="gb-avatar">C</div>
-                <div>
-                  <p class="gb-review-author">Luisa Garcia</p>
-                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                </div>
-              </div>
-              <p class="gb-review-text">"Una grata experiencia. La comida exquisita y el servicio, el mejor!!!"</p>
-            </div>
-
-            <div class="gb-review">
-              <div class="gb-review-top">
-                <div class="gb-avatar">J</div>
-                <div>
-                  <p class="gb-review-author">Jenny Vargas</p>
-                  <div class="gb-review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                </div>
-              </div>
-              <p class="gb-review-text">"Sencillamente delicioso, cada bocado es una nueva experiencia al paladar"</p>
-            </div>
-          </div>
-
-          <a href="https://www.google.com/search?q=Lyon+bakery+cl+Opiniones" target="_blank" rel="noopener" class="gb-ver-mas">
-            Ver todas las opiniones en Google &rarr;
-          </a>
+  <div class="gb-review" itemscope itemtype="https://schema.org/Review" itemprop="review">
+    <div class="gb-review-top">
+      <div class="gb-avatar">A</div>
+      <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <p class="gb-review-author" itemprop="name">Andrea Garces</p>
+        <div class="gb-review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          &#9733;&#9733;&#9733;&#9733;&#9733;
         </div>
+      </div>
+    </div>
+    <p class="gb-review-text" itemprop="reviewBody">"Excelente el servicio, la comida y la presentación para las fiestas y reuniones me encanto 10 de 10 súper recomendada para tus eventos y ocasiones especiales"</p>
+  </div>
+
+  <div class="gb-review" itemscope itemtype="https://schema.org/Review" itemprop="review">
+    <div class="gb-review-top">
+      <div class="gb-avatar">G</div>
+      <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <p class="gb-review-author" itemprop="name">Gabriela Vega</p>
+        <div class="gb-review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          &#9733;&#9733;&#9733;&#9733;&#9733;
+        </div>
+      </div>
+    </div>
+    <p class="gb-review-text" itemprop="reviewBody">"Muy linda persona la chef 👩🏻‍🍳, la comida es deliciosa, todo súper bien"</p>
+  </div>
+
+  <div class="gb-review" itemscope itemtype="https://schema.org/Review" itemprop="review">
+    <div class="gb-review-top">
+      <div class="gb-avatar">L</div>
+      <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <p class="gb-review-author" itemprop="name">Luisa Garcia</p>
+        <div class="gb-review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          &#9733;&#9733;&#9733;&#9733;&#9733;
+        </div>
+      </div>
+    </div>
+    <p class="gb-review-text" itemprop="reviewBody">"Una grata experiencia. La comida exquisita y el servicio, el mejor!!!"</p>
+  </div>
+
+  <div class="gb-review" itemscope itemtype="https://schema.org/Review" itemprop="review">
+    <div class="gb-review-top">
+      <div class="gb-avatar">J</div>
+      <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <p class="gb-review-author" itemprop="name">Jenny Vargas</p>
+        <div class="gb-review-stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          <meta itemprop="ratingValue" content="5">
+          <meta itemprop="bestRating" content="5">
+          &#9733;&#9733;&#9733;&#9733;&#9733;
+        </div>
+      </div>
+    </div>
+    <p class="gb-review-text" itemprop="reviewBody">"Sencillamente delicioso, cada bocado es una nueva experiencia al paladar"</p>
+  </div>
+</div>
+
+<a href="https://www.google.com/search?q=Lyon+bakery+cl+Opiniones" target="_blank" rel="noopener" class="gb-ver-mas">
+  Ver todas las opiniones en Google &rarr;
+</a>
 
       </div>
     </section>
