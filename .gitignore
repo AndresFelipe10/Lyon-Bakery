@@ -1,0 +1,52 @@
+# ── Sistema operativo ────────────────────────────────────────────
+# Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ── Editores ─────────────────────────────────────────────────────
+# VS Code — solo ignorar configuración personal, no la del proyecto
+.vscode/*
+!.vscode/extensions.json
+
+# JetBrains (WebStorm, etc.)
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ── Variables de entorno — NUNCA en el repo ──────────────────────
+.env
+.env.local
+.env.production
+.env*.local
+
+# ── Herramientas que podrías añadir en el futuro ─────────────────
+# Si algún día usas npm para herramientas (ej. Prettier, ImageMin)
+node_modules/
+.npm
+package-lock.json
+
+# Si compilas o minificas assets
+dist/
+build/
+*.min.js.map
+
+# ── Logs ─────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+
+# ── Archivos temporales y comprimidos ────────────────────────────
+*.tmp
+*.zip
+*.rar
